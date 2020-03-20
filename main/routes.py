@@ -1,18 +1,11 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-import os
-
-p_dir = os.path.abspath(os.path.dirname(__file__))
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(p_dir, 'database.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+#路徑模組
+from flask import render_template
+from main import app
+from main.models import User, Staff, Event
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template  ('index.html')
 
 @app.route('/team')
 def team():
@@ -46,5 +39,6 @@ def chat():
 def thanks():
     return 'thanks'
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/logout')
+def logout():
+    return 'logout'
