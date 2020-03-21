@@ -29,7 +29,7 @@ def chat():
 
 @app.route('/thanks')
 def thanks():
-    return 'thanks'
+    return render_template('thanks.html', title='銘謝')
 
 @app.route('/logout')
 def logout():
