@@ -33,15 +33,6 @@
   margin-left: 0;
 }
 
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -100%;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-}
-
 body {
   background: #599fd9;
   background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
