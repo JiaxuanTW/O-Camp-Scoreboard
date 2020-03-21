@@ -11,12 +11,34 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/dfb05a900a.js" crossorigin="anonymous"></script>
 
-        <title>Index Page</title>
+        <title>{{ title }}</title>
     </head>
     <body>
+
+        <script>
+            $("#sidebar").toggleClass('active');
+        </script>
+        
+        <!-- 收合側邊欄按鈕 -->
+        <script>
+            $(function() {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+            $(function() {
+                // Sidebar toggle behavior
+                $('#sidebarShow').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
+
         <!-- 側邊欄 -->
         <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-chevron-left mr-2"></i></button>
                 <div class="media d-flex align-items-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/LACMTA_Circle_Gold_Line.svg/512px-LACMTA_Circle_Gold_Line.svg.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                         <h4 class="m-0">高大資工宿營</h4>
@@ -31,7 +53,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark bg-light">
                         <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
-                        記分板
+                        積分系統
                     </a>
                 </li>
                 <li class="nav-item">
@@ -80,20 +102,9 @@
         <!-- 結束側邊欄 --> 
         
         <!-- 主要頁面內容 -->
-        <div class="page-content-copy p-5">
-            <!-- 收合側邊欄按鈕 -->
-            <div class="clearfix">
-                <button id="sidebarCollapse" type="button" class="btn float-right btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-            </div>
-            <script>
-                $(function() {
-                    // Sidebar toggle behavior
-                    $('.page-content-copy'||'#sidebarCollapse').on('click', function () {
-                        $('#sidebar').toggleClass('active');
-                    });
-                    
-                });
-            </script>
+        <div class="page-content p-4">
+            
+            <button id="sidebarShow" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
 
             {% block content %}
             {% endblock %}

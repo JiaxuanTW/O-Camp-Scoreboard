@@ -5,7 +5,7 @@ from main.models import User, Staff, Event
 
 @app.route('/')
 def home():
-    return render_template  ('index.html')
+    return render_template  ('layout.html', title='title')
 
 @app.route('/team')
 def team():
@@ -17,15 +17,7 @@ def rank():
 
 @app.route('/info')
 def roommate():
-    return render_template('info.html')
-
-@app.route('/info/teammate')
-def teammate():
-    return 'teammate'
-
-@app.route('/info/timetable')
-def timetable():
-    return 'timetable'
+    return render_template('info.html', title='活動資訊')
 
 @app.route('/bulletinboard')
 def bulletin_board():
