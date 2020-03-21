@@ -1,3 +1,19 @@
+/* 圓角分頁@活動資訊 */
+
+@media (min-width: 576px) {
+  .rounded-nav {
+    border-radius: 50rem !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .rounded-nav .nav-link {
+    border-radius: 50rem !important;
+  }
+}
+
+/* 側邊欄@index */
+
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
@@ -16,7 +32,6 @@
 }
 
 /* for toggle behavior */
-
 #sidebar.active {
   margin-left: -17rem;
 }

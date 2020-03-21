@@ -15,9 +15,9 @@ def team():
 def rank():
     return 'rank'
 
-@app.route('/info/roommate')
+@app.route('/info')
 def roommate():
-    return 'roommate'
+    return render_template('info.html')
 
 @app.route('/info/teammate')
 def teammate():

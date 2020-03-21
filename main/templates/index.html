@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <link rel="stylesheet" href="/static/css/css_custom.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <scrpt src="/main/static/js/js_custom.js"></scrpt>
+              
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/dfb05a900a.js" crossorigin="anonymous"></script>
+
         <title>Index Page</title>
     </head>
     <body>
-        <!-- Vertical navbar -->
+        <!-- 側邊欄 -->
         <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                <div class="media d-flex align-items-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/LACMTA_Circle_Gold_Line.svg/512px-LACMTA_Circle_Gold_Line.svg.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                         <h4 class="m-0">高大資工宿營</h4>
                         <p class="font-weight-light text-muted mb-0">RPG積分網站測試</p>
@@ -22,45 +24,77 @@
                 </div>
             </div>
         
-            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">資訊</p>
         
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark bg-light">
-                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
                         記分板
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark">
-                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        <i class="fa fa-star mr-3 text-primary fa-fw"></i>
                         排名
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark">
-                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        <i class="fa fa-comment-dots  mr-3 text-primary fa-fw"></i>
                         留言板
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/info" class="nav-link text-dark">
+                        <i class="fa fa-info-circle mr-3 text-primary fa-fw"></i>
+                        活動資訊
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link text-dark">
-                        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        <i class="fa fa-user-friends mr-3 text-primary fa-fw"></i>
                         銘謝
                     </a>
                 </li>
             </ul>
-        </div>
-        <!-- End vertical navbar --> 
-        
-        <!-- Page content holder -->
-        <div class="page-content p-5" id="content">
-            <!-- Toggle button -->
-            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-        </div>
-            
 
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">功能</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark">
+                        <i class="fa fa-qrcode mr-3 text-primary fa-fw"></i>
+                        QRcode
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark">
+                        <i class="fa fa-sign-out-alt mr-3 text-primary fa-fw"></i>
+                        登出
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 結束側邊欄 --> 
         
-        
+        <!-- 主要頁面內容 -->
+        <div class="page-content p-5" id="content">
+            <!-- 收合側邊欄按鈕 -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
+            <script>
+                $(function() {
+                    // Sidebar toggle behavior
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar, #content').toggleClass('active');
+                    });
+                });
+            </script>
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
     </body>
 </html>
