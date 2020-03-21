@@ -9,7 +9,7 @@ def home():
 
 @app.route('/team')
 def team():
-    return 'team'
+    return render_template('team.html', title='積分系統')
 
 @app.route('/rank')
 def rank():
@@ -18,10 +18,6 @@ def rank():
 @app.route('/info')
 def roommate():
     return render_template('info.html', title='活動資訊')
-
-@app.route('/bulletinboard')
-def bulletin_board():
-    return 'bulletin board'
 
 @app.route('/chat')
 def chat():
