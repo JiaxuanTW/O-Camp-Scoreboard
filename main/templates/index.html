@@ -80,7 +80,7 @@
         <!-- 結束側邊欄 --> 
         
         <!-- 主要頁面內容 -->
-        <div class="page-content p-5" id="content">
+        <div class="page-content-copy p-5">
             <!-- 收合側邊欄按鈕 -->
             <div class="clearfix">
                 <button id="sidebarCollapse" type="button" class="btn float-right btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
@@ -88,9 +88,10 @@
             <script>
                 $(function() {
                     // Sidebar toggle behavior
-                    $('#sidebarCollapse').on('click', function () {
+                    $('.page-content-copy'||'#sidebarCollapse').on('click', function () {
                         $('#sidebar').toggleClass('active');
                     });
+                    
                 });
             </script>
 
