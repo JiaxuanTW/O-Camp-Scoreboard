@@ -1,13 +1,17 @@
+<!--這個是網頁底層模板，所有其他頁面都是繼承自這個模板-->
 <!DOCTYPE html>
 <html>
     <head>
+        <!--修正編碼-->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--調整手機裝置的螢幕顯示-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--網站圖示-->
         <link rel="icon" href="/static/imgs/favicon.ico" type="image/x-icon">
-
+        <!--樣式表（包含自訂樣式與Boostrap樣板引擎）-->
         <link rel="stylesheet" href="/static/css/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-              
+        <!--其他附加文件-->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -54,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">
+                    <a href="/login" class="nav-link text-dark"> <!--注意:測試用-->
                         <i class="fa fa-star mr-3 text-primary fa-fw"></i>
                         排名
                     </a>
@@ -83,7 +87,7 @@
 
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">
+                    <a href="/scanner" class="nav-link text-dark">
                         <i class="fa fa-qrcode mr-3 text-primary fa-fw"></i>
                         QRcode
                     </a>
@@ -107,5 +111,6 @@
             {% endblock %}
 
         </div>
+        <!-- 結束主要頁面內容 -->
     </body>
 </html>
