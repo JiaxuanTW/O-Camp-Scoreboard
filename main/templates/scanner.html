@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-
 <html lang="zh-tw">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>instascan：純前端掃描 QR Code</title>
-
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 </head>
 
 <body>
+    <video id="preview"></video>
     <script type="text/javascript">
         let scanner = new Instascan.Scanner({
             continuous: true, // 連續掃描
@@ -51,7 +49,6 @@
             console.error(e);
         });
     </script>
-    <video id="preview"></video>
 </body>
 
 </html>
