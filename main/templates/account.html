@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="zh-tw">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ title }} - 高大資工宿營</title>
+    <!--網站圖示-->
+    <link rel="icon" href="/static/imgs/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- 自定義樣式表 -->
+    <link href="/static/css/login.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <form class="form-signin" method="POST" action="">
+        {{ form.hidden_tag() }}
+        <img class="mb-4" src="/static/imgs/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
+        
+        {{ form.account.label(class="sr-only") }}
+        {% if form.account.errors %}
+            {{ form.account(class="form-control is-invalid") }}
+        {% else %}
+            {{ form.account(class="form-control")}}
+        {% endif %}
+        
+        {{ form.password.label(class="sr-only") }}
+        {% if form.password.errors %}
+            {{ form.password(class="form-control is-invalid") }}
+        {% else %}
+            {{ form.password(class="form-control")}}
+        {% endif %}
+
+        {% if title == '登入系統' %}
+            <div class="invalid-feedback">
+                <span>帳號或密碼錯誤</span>
+            </div>
+
+            <div class="checkbox mb-3">
+                {{ form.remember(class="form-check-iuput") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+        {% else %}
+            <div class="invalid-feedback">
+                <span">密碼設定請介於 8 到 20 個字元</span>
+            </div>
+        {% endif %}
+
+        {{ form.submit.label(class="sr-only") }}
+        {{ form.submit(class="btn btn-lg btn-primary btn-block mt-3")}}
+
+        <p class="mt-5 mb-3 text-muted">© 2020 NUK CSIE</p>
+    </form>
+
+</body>
+
+</html>

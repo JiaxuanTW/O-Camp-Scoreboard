@@ -33,11 +33,15 @@
   margin-left: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background: #599fd9;
   background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
   background: linear-gradient(to right, #599fd9, #c2e59c);
-  min-height: 100vh;
+  height: 100%;
   overflow-x: hidden;
 }
 

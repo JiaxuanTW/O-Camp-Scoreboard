@@ -5,7 +5,9 @@ import os
 
 app = Flask(__name__)
 
-#組態參數
+app.config['SECRET_KEY'] = '85ad229cd598f387664cd5f75dff022c'
+
+#資料庫組態參數
 p_dir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
     os.path.join(p_dir, 'database.db')

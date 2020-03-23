@@ -1,7 +1,8 @@
 #路徑模組
-from flask import render_template
+from flask import render_template, url_for, flash, redirect
 from main import app
 from main.models import User, Staff, Event
+from main.forms import LoginForm, ResetForm
 
 @app.route('/')
 def home():
@@ -31,9 +32,20 @@ def thanks():
 def scanner():
     return render_template('scanner.html')
 
-@app.route('/login')
+#帳號系統，在此login與reset都是使用同一個模板
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('home'))
+    return render_template('account.html', form=form, title='登入系統')
+
+@app.route('/reset', methods=['GET', 'POST'])
+def reset():
+    form = ResetForm()
+    if form.validate_on_submit():
+        return redirect(url_for('login'))
+    return render_template('account.html', form=form, title='重設密碼')
 
 @app.route('/logout')
 def logout():
