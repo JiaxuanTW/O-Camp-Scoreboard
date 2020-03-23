@@ -34,16 +34,16 @@
         
         {{ form.account.label(class="sr-only") }}
         {% if form.account.errors %}
-            {{ form.account(class="form-control is-invalid") }}
+            {{ form.account(class="form-control ac-box is-invalid") }}
         {% else %}
-            {{ form.account(class="form-control")}}
+            {{ form.account(class="form-control ac-box")}}
         {% endif %}
         
         {{ form.password.label(class="sr-only") }}
         {% if form.password.errors %}
-            {{ form.password(class="form-control is-invalid") }}
+            {{ form.password(class="form-control pw-box is-invalid") }}
         {% else %}
-            {{ form.password(class="form-control")}}
+            {{ form.password(class="form-control pw-box")}}
         {% endif %}
 
         {% if title == '登入系統' %}
