@@ -31,6 +31,15 @@
         {{ form.hidden_tag() }}
         <img class="mb-4" src="/static/imgs/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
+
+        {% if title == '重設帳戶' %}
+            {{ form.nickname.label(class="sr-only") }}
+            {% if form.nickname.errors %}
+                {{ form.nickname(class="form-control ac-box is-invalid") }}
+            {% else %}
+                {{ form.nickname(class="form-control ac-box")}}
+            {% endif %}
+        {% endif %}
         
         {{ form.account.label(class="sr-only") }}
         {% if form.account.errors %}
@@ -75,8 +84,6 @@
                 <span>密碼長度應為 8 到 20 個字元</span>
             </div>
         {% endif %}
-
-        
 
         {{ form.submit.label(class="sr-only") }}
         {{ form.submit(class="btn btn-lg btn-primary btn-block mt-3")}}

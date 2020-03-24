@@ -1,7 +1,7 @@
 #路徑模組
 from flask import render_template, url_for, flash, redirect, request
-from main import app
-from main.models import User, Staff, Event, Team
+from main import app, db
+from main.models import User, Event, Team
 from main.forms import LoginForm, ResetForm
 from flask_login import login_user, current_user, logout_user
 
@@ -62,7 +62,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(account=form.account.data).first()
-        if form.account.data == form.password.data:
+        if user and user.account == user.password:
+            login_user(user)
+            flash('請設定新密碼', 'danger')
             return redirect(url_for('reset'))
         elif user and user.password == form.password.data:
             login_user(user, remember=form.remember.data)
@@ -73,11 +75,23 @@ def login():
 
 @app.route('/reset', methods=['GET', 'POST'])
 def reset():
-    form = ResetForm()
-    if form.validate_on_submit():
-        if form.account.data != form.password.data:
-            return redirect(url_for('login'))
-    return render_template('account.html', form=form, title='重設密碼')
+    if current_user.is_authenticated:
+        form = ResetForm()
+        if form.validate_on_submit():
+            user = User.query.filter_by(account=form.account.data).first()
+            if current_user==user and form.account.data != form.password.data:
+                user.password = form.password.data
+                user.nickname = form.nickname.data
+                db.session.commit()
+                logout_user()
+                return redirect(url_for('login'))
+            elif current_user==user and form.account.data == form.password.data:
+                flash('不可以與原始密碼相同', 'danger')
+            else:
+                flash('帳號錯誤', 'danger')
+        return render_template('account.html', form=form, title='重設帳戶')
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
