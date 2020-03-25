@@ -65,22 +65,26 @@
                 });
                 
                 Instascan.Camera.getCameras().then(function (cameras) {
-                    if (cameras.length > 0) {
-                        
-                        var index = 0;
+                    if (cameras.length > 0) 
+                    {
                         //------調整------//
+                        var index = 0;
+                        scanner.start(cameras[index]);
                         $('#changeCamera').click(function () {
-                            alert('i='+index);
                             index++;
                             if(index==cameras.length){
                                 index=0;
                             }
+                            //alert('camera=' + index);
+                            scanner.start(cameras[index]);
                         });
-                        scanner.start(cameras[index]);
-                    } else {
+                    } 
+                    else 
+                    {
                         console.error('No Camera Found.');
                         alert('沒有找到任何影像輸入來源');
                     }
+
                 }).catch(function (e) {
                     console.error(e);
                 });
