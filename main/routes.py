@@ -23,7 +23,7 @@ def home():
 @app.route('/team')
 def team():
     if current_user.is_authenticated:
-        return render_template('team.html', title='積分系統')
+        return render_template('team.html', title='積分系統', user=current_user)
     else:
         return redirect(url_for('login'))
 
@@ -34,7 +34,7 @@ def rank():
 @app.route('/info')
 def info():
     if current_user.is_authenticated:
-        return render_template('info.html', title='活動資訊')
+        return render_template('info.html', title='活動資訊', user=current_user)
     else:
         return redirect(url_for('login'))
 
@@ -45,7 +45,7 @@ def chat():
 @app.route('/thanks')
 def thanks():
     if current_user.is_authenticated:
-        return render_template('thanks.html', title='銘謝')
+        return render_template('thanks.html', title='銘謝', user=current_user)
     else:
         return redirect(url_for('login'))
 
