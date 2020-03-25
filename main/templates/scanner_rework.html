@@ -54,6 +54,7 @@
                 let scanner = new Instascan.Scanner({ 
                     video: document.getElementById('preview'),
                     continuous: true,
+                    mirror: false,
                     facingMode: {
                         exact: "environment" //使用後鏡頭(IOS設備)
                     }
@@ -70,7 +71,7 @@
                         //------調整------//
                         var index = 0;
                         scanner.start(cameras[index]);
-                        $('#changeCamera').click(function () {
+                        $('#changeCamera').click(function() {
                             index++;
                             if(index==cameras.length){
                                 index=0;
@@ -78,7 +79,7 @@
                             //alert('camera=' + index);
                             scanner.start(cameras[index]);
                         });
-                    } 
+                    }
                     else 
                     {
                         console.error('No Camera Found.');
