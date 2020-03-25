@@ -41,6 +41,7 @@
         <div class="camera bg-white rounded shadow border-0">
             <video id="preview" style="width: -webkit-fill-available;height: -webkit-fill-available;overflow: hidden;transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
         </div>
+        <!--
         <script type="text/javascript">
             let scanner = new Instascan.Scanner({ //建立掃描器物件
                 continuous: true, //連續掃描
@@ -79,6 +80,21 @@
                 console.error(e);
             });
 
-        </script>
+        </script>-->
+        <script type="text/javascript">
+            let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+            scanner.addListener('scan', function (content) {
+              console.log(content);
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+              if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+              } else {
+                console.error('No cameras found.');
+              }
+            }).catch(function (e) {
+              console.error(e);
+            });
+          </script>
     </body>
 </html>
