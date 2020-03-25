@@ -69,7 +69,8 @@
                         
                         var index = 0;
                         //------調整------//
-                        $('#changeCamera').on('click', function () {
+                        $('#changeCamera').click(function () {
+                            alert('i='+index);
                             index++;
                             if(index==cameras.length){
                                 index=0;
