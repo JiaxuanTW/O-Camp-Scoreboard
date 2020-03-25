@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <head>
+        <!--修正編碼-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--調整手機裝置的螢幕顯示-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+        <!--網站圖示-->
+        <link rel="icon" href="/static/imgs/favicon.ico" type="image/x-icon">
+        <!--樣式表（包含自訂樣式與Boostrap樣板引擎）
+        <link rel="stylesheet" href="/static/css/style.css">-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!--其他附加文件-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/static/js/instascan.min.js"></script>
+        <!--字型引擎-->
+        <link href="/static/css/all.css" rel="stylesheet">
+
+        <title>{{ title }} - 高大資工宿營</title>
+
+        <style>
+            .relative-set{
+                position: relative;
+            }
+            .camera{
+                position: absolute;
+                top: 0px;
+                width: -webkit-fill-available;
+                height: -webkit-fill-available;
+                z-index: 10;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-content p-4 relative-set" style="z-index:80">
+            <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-home"></i></button>
+            <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
+        </div>
+        <div class="camera bg-white rounded shadow border-0">
+            <video id="preview" style="width: -webkit-fill-available;height: -webkit-fill-available;overflow: hidden;transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
+        </div>
+        <script type="text/javascript">
+            let scanner = new Instascan.Scanner({ //建立掃描器物件
+                continuous: true, //連續掃描
+                video: document.getElementById('preview'), //預覽
+                facingMode: {
+                    exact: "environment" //使用後鏡頭(IOS設備)
+                }
+            });
+
+            scanner.addListener('scan', function (content) { //偵聽掃描事件
+
+                console.log(content);
+                getConfirmation();
+
+                function getConfirmation() {
+                    var retVal = confirm("掃描結果：" + content); //掃描結果顯示
+                    if (retVal == true) {
+                        var checkurl = /^((https?|http?|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/; // 檢查是否為網址
+                        if (checkurl.test(content)) {
+                            window.open(content, "_self"); //開啟網址
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    scanner.start(cameras[1]); // [0] 前鏡頭 [1] 後鏡頭 
+                } else {
+                    console.error('沒有找到相機');
+                }
+            }).catch(function (e) {
+                console.error(e);
+            });
+
+        </script>
+    </body>
+</html>

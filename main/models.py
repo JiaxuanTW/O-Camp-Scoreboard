@@ -18,7 +18,8 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.account}', '{self.nickname}', '{self.password}')"
-'''
+
+''' 工作人員資料整合進使用者
 class Staff(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nickname = db.Column(db.String(20), nullable=False, default='staff')

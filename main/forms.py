@@ -13,4 +13,3 @@ class ResetForm(FlaskForm):
     account = StringField('帳號', validators=[DataRequired(), Length(min=8, max=8)], render_kw={"placeholder": "帳號"})
     password = PasswordField('重設密碼', validators=[DataRequired(), Length(min=8, max=20)], render_kw={"placeholder": "新密碼"})
     submit = SubmitField('重設')
-

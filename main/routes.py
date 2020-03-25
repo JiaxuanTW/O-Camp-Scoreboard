@@ -52,7 +52,7 @@ def thanks():
 @app.route('/scanner')
 def scanner():
     if current_user.is_authenticated:
-        return render_template('scanner.html')
+        return render_template('scanner_rework.html')
     else:
         return redirect(url_for('login'))
 
