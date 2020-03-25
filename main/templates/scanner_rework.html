@@ -51,7 +51,7 @@
             <video id="preview" style="width: -webkit-fill-available; height: -webkit-fill-available; overflow: hidden; transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
 
             <script type="text/javascript">
-                let scanner = new Instascan.Scanner({ 
+                let scanner = new Instascan.Scanner({
                     video: document.getElementById('preview'),
                     continuous: true,
                     mirror: false,
@@ -68,15 +68,14 @@
                 Instascan.Camera.getCameras().then(function (cameras) {
                     if (cameras.length > 0) 
                     {
-                        //------調整------//
-                        var index = 0;
+                        //------優化調整------//
+                        var index = cameras.length - 1;
                         scanner.start(cameras[index]);
                         $('#changeCamera').click(function() {
                             index++;
                             if(index==cameras.length){
                                 index=0;
                             }
-                            //alert('camera=' + index);
                             scanner.start(cameras[index]);
                         });
                     }
@@ -88,6 +87,7 @@
 
                 }).catch(function (e) {
                     console.error(e);
+                    alert('未知的錯誤');
                 });
             </script>
         </div>

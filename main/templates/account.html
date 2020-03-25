@@ -68,20 +68,15 @@
 
         {% if title == '登入系統' %}
             <div class="alert alert-danger invalid-feedback">
-                <span>密碼長度應為 8 到 20 個字元</span>
+                <span>帳號或密碼長度錯誤</span>
             </div>
             <div class="checkbox mb-3">
                 {{ form.remember(class="form-check-iuput") }}
                 {{ form.remember.label(class="form-check-label") }}
             </div>
         {% else %}
-        <!--
-            <div class="invalid-feedback">
-                <span">密碼設定請介於 8 到 20 個字元</span>
-            </div>
-        -->
             <div class="alert alert-danger invalid-feedback">
-                <span>密碼長度應為 8 到 20 個字元</span>
+                <span>帳號或密碼長度錯誤</span>
             </div>
         {% endif %}
 
