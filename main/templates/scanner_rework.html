@@ -28,12 +28,16 @@
         <style>
             .relative-set{
                 position: relative;
+                overflow-y: hidden;
+                overflow-x: hidden;
             }
             .camera{
                 position: absolute;
                 top: 0px;
                 width: -webkit-fill-available;
                 height: -webkit-fill-available;
+                overflow-y: hidden;
+                overflow-x: hidden;
                 z-index: 10;
             }
         </style>
@@ -43,8 +47,8 @@
             <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-home"></i></button>
             <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
         </div>
-        <div class="camera preview-container">
-            <video id="preview" style="z-index:100; width: -webkit-fill-available; height: -webkit-fill-available; overflow: hidden; transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
+        <div class="camera preview-container" style="overflow: hidden;">
+            <video id="preview" style="width: -webkit-fill-available; height: -webkit-fill-available; overflow: hidden; transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
         
         <!--
         <script type="text/javascript">
