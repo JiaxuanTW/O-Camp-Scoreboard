@@ -45,61 +45,40 @@
     <body>
         <div class="page-content p-4 relative-set" style="z-index:80">
             <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><a href="/"><i class="fas fa-home"></i></a></button>
-            <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
+            <button id="changeCamera" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
         </div>
         <div class="camera preview-container" style="overflow: hidden;">
             <video id="preview" style="width: -webkit-fill-available; height: -webkit-fill-available; overflow: hidden; transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
-        
-        <!--
-        <script type="text/javascript">
-            let scanner = new Instascan.Scanner({ //建立掃描器物件
-                continuous: true, //連續掃描
-                video: document.getElementById('preview'), //預覽
-                facingMode: {
-                    exact: "environment" //使用後鏡頭(IOS設備)
-                }
-            });
 
-            scanner.addListener('scan', function (content) { //偵聽掃描事件
-
-                console.log(content);
-                getConfirmation();
-
-                function getConfirmation() {
-                    var retVal = confirm("掃描結果：" + content); //掃描結果顯示
-                    if (retVal == true) {
-                        var checkurl = /^((https?|http?|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/; // 檢查是否為網址
-                        if (checkurl.test(content)) {
-                            window.open(content, "_self"); //開啟網址
-                        }
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
-
-            Instascan.Camera.getCameras().then(function (cameras) {
-                if (cameras.length > 0) {
-                    scanner.start(cameras[1]); // [0] 前鏡頭 [1] 後鏡頭 
-                } else {
-                    console.error('沒有找到相機');
-                }
-            }).catch(function (e) {
-                console.error(e);
-            });
-
-            </script>-->
             <script type="text/javascript">
-                let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+                let scanner = new Instascan.Scanner({ 
+                    video: document.getElementById('preview'),
+                    continuous: true,
+                    facingMode: {
+                        exact: "environment" //使用後鏡頭(IOS設備)
+                    }
+                 });
+                
+                //偵聽動作
                 scanner.addListener('scan', function (content) {
                     console.log(content);
                 });
+                
                 Instascan.Camera.getCameras().then(function (cameras) {
                     if (cameras.length > 0) {
-                        scanner.start(cameras[0]);
+                        
+                        var index = 0;
+                        //------調整------//
+                        $('#changeCamera').on('click', function () {
+                            index++;
+                            if(index==cameras.length){
+                                index=0;
+                            }
+                        });
+                        scanner.start(cameras[index]);
                     } else {
-                        console.error('No cameras found.');
+                        console.error('No Camera Found.');
+                        alert('沒有找到任何影像輸入來源');
                     }
                 }).catch(function (e) {
                     console.error(e);

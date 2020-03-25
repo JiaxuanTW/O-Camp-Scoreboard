@@ -2,7 +2,7 @@
 from flask import render_template, url_for, flash, redirect, request
 from main import app, db
 from main.models import User, Event, Team
-from main.forms import LoginForm, ResetForm
+from main.forms import LoginForm, ResetForm, ScanForm
 from flask_login import login_user, current_user, logout_user
 
 '''
