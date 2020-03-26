@@ -21,12 +21,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Staff</td>
-                        <td>User</td>
-                        <td>4234</td>
-                    </tr>
-                    
+                    {% for i in event_list %}
+                        <tr>
+                            <td>{{ user_list[i.reciever_id-1].nickname }}</td>
+                            <td>{{ i.coins }}</td>
+                            <td>{{ i.time }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

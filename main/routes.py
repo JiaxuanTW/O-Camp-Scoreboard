@@ -13,6 +13,8 @@ def init_page():
     else:
         return redirect(url_for('login'))
 '''
+
+
 @app.route('/')
 def home():
     if current_user.is_authenticated:
@@ -23,7 +25,10 @@ def home():
 @app.route('/team')
 def team():
     if current_user.is_authenticated:
-        return render_template('team.html', title='積分系統', user=current_user)
+        event_list = Event.query.filter_by(team_event_id=1).all()
+        user_list = User.query.all()
+        return render_template('team.html', title='積分系統', user=current_user,
+                                 event_list=event_list, user_list=user_list)
     else:
         return redirect(url_for('login'))
 
