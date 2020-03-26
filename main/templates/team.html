@@ -1,11 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<div style="position: relative;">
-    <img src="/static/imgs/apollo.jpg" class="rounded shadow border-0 mb-4" style="width: 100%;">
-    
-</div>
-
 <div class="bg-white rounded shadow border-0 mb-4">
     <h3 style="text-align: center; padding-top: 15px;"><strong>目前分數</strong></h3>
     <h1 style="text-align: center; padding-bottom: 15px;">5000</h1>
@@ -27,7 +22,6 @@
                     <tr>
                         <th>隊員</th>
                         <th>金幣</th>
-                        <th>時間</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +29,6 @@
                         <tr>
                             <td>{{ user_list[i.reciever_id-1].nickname }}</td>
                             <td>{{ i.coins }}</td>
-                            <td>{{ i.time }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
