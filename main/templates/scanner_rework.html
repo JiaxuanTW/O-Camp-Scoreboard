@@ -48,6 +48,9 @@
             <button id="changeCamera" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
         </div>
         <div class="camera preview-container" style="overflow: hidden;">
+            <div style="position: absolute;  top: calc(50% - 130px);  left: calc(50% - 130px); z-index: 60; margin: auto;">
+                <img src="/static/imgs/scan_grid.png" style="width: 260px; height: 260x;">
+            </div>
             <video id="preview" style="width: -webkit-fill-available; height: -webkit-fill-available; overflow: hidden; transform: scaleX(-1);" autoplay="autoplay" class="inactive"></video>
 
             <script type="text/javascript">
