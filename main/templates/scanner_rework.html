@@ -35,7 +35,7 @@
                 position: absolute;
                 top: 0px;
                 width: -webkit-fill-available;
-                height: -webkit-fill-available;
+                height: auto;
                 overflow-y: hidden;
                 overflow-x: hidden;
                 z-index: 10;
@@ -66,6 +66,7 @@
                 //偵聽動作
                 scanner.addListener('scan', function (content) {
                     console.log(content);
+                    document.getElementById('preview').style.visibility = "hidden";
                     $("#ModalCenter").modal()
                     document.getElementById('account').value = content;
                 });
