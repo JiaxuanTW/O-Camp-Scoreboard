@@ -54,10 +54,18 @@ def thanks():
     else:
         return redirect(url_for('login'))
 
-@app.route('/scanner')
+@app.route('/scanner', methods=['GET', 'POST'])
 def scanner():
     if current_user.is_authenticated:
-        return render_template('scanner_rework.html')
+        form = ScanForm()
+        #form.account.data='A1085512'
+        #form.coins.data=43
+        if form.validate_on_submit():
+            flash('successed!', 'danger')
+            return redirect(url_for('home'))
+        else:
+            flash('failed!!', 'danger')
+        return render_template('scanner_rework.html', form=form)
     else:
         return redirect(url_for('login'))
 

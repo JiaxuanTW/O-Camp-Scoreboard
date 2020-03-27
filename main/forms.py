@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 class LoginForm(FlaskForm):
@@ -15,5 +15,6 @@ class ResetForm(FlaskForm):
     submit = SubmitField('重設')
 
 class ScanForm(FlaskForm):
-    result = StringField('掃描結果', validators=[DataRequired()])
-    submit = SubmitField('接收')
+    account = StringField('接收人', validators=[DataRequired()], render_kw={"placeholder": "接收人帳號", "readonly":"true"})
+    coins = IntegerField('金幣', validators=[DataRequired()], render_kw={"placeholder": "金幣數量", "inputmode":"numeric"})
+    submit = SubmitField('送出')
