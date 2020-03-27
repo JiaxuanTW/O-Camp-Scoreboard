@@ -47,9 +47,9 @@
             <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><a href="/"><i class="fas fa-home"></i></a></button>
             <button id="changeCamera" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
             <!--錯誤資訊-->
-            {% if warn == 1 %}
+            {% if warn != '' %}
                 <div class="alert alert-danger">
-                    <span>查無此人</span>
+                    <span>{{ warn }}</span>
                 </div>
             {% endif %}
         </div>
@@ -123,6 +123,7 @@
                                 {{ form.coins.label(class="sr-only") }}
                                 {{ form.coins(class="form-control") }}
                             </div>
+                            <p style="text-align: center; color: crimson;">注意：不可以輸入 0 與非整數字元</p>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" onclick="location.href='/scanner'">取消</button>
                                 {{ form.submit.label(class="sr-only") }}

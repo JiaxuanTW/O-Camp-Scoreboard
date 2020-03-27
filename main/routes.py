@@ -66,8 +66,8 @@ def scanner():
                 db.session.commit()
                 return redirect(url_for('home'))
             else:
-                return render_template('scanner_rework.html', form=form, warn=1)
-        return render_template('scanner_rework.html', form=form, warn=0)
+                return render_template('scanner_rework.html', form=form, warn='查無此人')
+        return render_template('scanner_rework.html', form=form, warn='')
     else:
         return redirect(url_for('login'))
 
