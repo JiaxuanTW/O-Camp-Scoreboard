@@ -72,7 +72,7 @@
                 //偵聽動作
                 scanner.addListener('scan', function (content) {
                     console.log(content);
-                    document.getElementById('preview').style.visibility = "hidden";
+                    //document.getElementById('preview').style.visibility = "hidden";
                     $("#ModalCenter").modal()
                     document.getElementById('account').value = content;
                 });
