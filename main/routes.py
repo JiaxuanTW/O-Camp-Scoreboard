@@ -58,14 +58,16 @@ def thanks():
 def scanner():
     if current_user.is_authenticated:
         form = ScanForm()
-        #form.account.data='A1085512'
-        #form.coins.data=43
         if form.validate_on_submit():
-            flash('successed!', 'danger')
-            return redirect(url_for('home'))
-        else:
-            flash('failed!!', 'danger')
-        return render_template('scanner_rework.html', form=form)
+            user = User.query.filter_by(account=form.account.data).first()
+            if user:
+                event = Event(coins=form.coins.data, reciever_id=user.id, team_event_id=user.team_id)
+                db.session.add(event)
+                db.session.commit()
+                return redirect(url_for('home'))
+            else:
+                return render_template('scanner_rework.html', form=form, warn=1)
+        return render_template('scanner_rework.html', form=form, warn=0)
     else:
         return redirect(url_for('login'))
 

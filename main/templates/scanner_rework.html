@@ -17,7 +17,7 @@
         <script type="text/javascript" src="/static/js/instascan.min.js"></script>
         <!--字型引擎-->
         <link href="/static/css/all.css" rel="stylesheet">
-
+        <!--Instascan模組-->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
@@ -46,6 +46,12 @@
         <div class="page-content p-4 relative-set" style="z-index:80">
             <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><a href="/"><i class="fas fa-home"></i></a></button>
             <button id="changeCamera" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fas fa-camera"></i><small class="text-uppercase font-weight-bold"> 切換鏡頭</small></button>
+            <!--錯誤資訊-->
+            {% if warn == 1 %}
+                <div class="alert alert-danger">
+                    <span>查無此人</span>
+                </div>
+            {% endif %}
         </div>
         <div class="camera preview-container" style="overflow: hidden;">
             <div style="position: absolute;  top: calc(50% - 130px);  left: calc(50% - 130px); z-index: 60; margin: auto;">
@@ -105,9 +111,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalCenterTitle">發大財</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="">
@@ -121,7 +124,7 @@
                                 {{ form.coins(class="form-control") }}
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-secondary" onclick="location.href='/scanner'">取消</button>
                                 {{ form.submit.label(class="sr-only") }}
                                 {{ form.submit(class="btn btn-primary") }}
                             </div>
@@ -130,5 +133,7 @@
                 </div>
             </div>
         </div>
+
     </body>
+
 </html>
