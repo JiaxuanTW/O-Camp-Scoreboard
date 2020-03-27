@@ -25,7 +25,7 @@ def home():
 @app.route('/team')
 def team():
     if current_user.is_authenticated:
-        event_list = Event.query.filter_by(team_event_id=1).all()
+        event_list = Event.query.filter_by(team_event_id=1).order_by(Event.time.desc()).all()
         user_list = User.query.all()
         return render_template('team.html', title='積分系統', user=current_user,
                                  event_list=event_list, user_list=user_list)
