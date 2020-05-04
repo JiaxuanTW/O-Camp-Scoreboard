@@ -3,9 +3,11 @@ from main import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,17 +21,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.account}', '{self.nickname}', '{self.password}')"
 
-''' 工作人員資料整合進使用者
-class Staff(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nickname = db.Column(db.String(20), nullable=False, default='staff')
-    account = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(40), nullable=False)
-    sent_event = db.relationship('Event', backref='sender', lazy=True) #關主送出事件
 
-    def __repr__(self):
-        return f"Staff('{self.account}', '{self.nickname}', '{self.password}')"
-'''
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     coins = db.Column(db.Integer, nullable=False)
@@ -39,6 +31,7 @@ class Event(db.Model):
 
     def __repr__(self):
         return f"Event('{self.time}', '{self.coins}')"
+
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -54,4 +47,4 @@ class Team(db.Model):
 
     def __repr__(self):
         return f"Team('{self.members}')"
-               
+
