@@ -35,4 +35,4 @@ This is a python-flask based website for score recording in 2020 NUK CSIE freshe
 
 
 
-## 
+## 系統設計
