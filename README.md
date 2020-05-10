@@ -11,16 +11,28 @@ This is a python-flask based website for score recording in 2020 NUK CSIE freshe
 6. 個人帳號登入系統
 
 ## 工具與套件
-編輯器：Visual Studio Code  
-環境：Python 3.8.1  
-套件：  
+#### 編輯器：Visual Studio Code  
+#### 環境：Python 3.8.1  
+#### 套件：  
 1. Flask
 2. Flask-SQLAlchemy
 3. flask-wtf
 4. flask-login
 5. gunicorn
-6. psycopg2
-其他工具：
+6. psycopg2  
+
+#### JS 套件引用
+1. Boostrap
+2. InstantScan
+3. Awsome Fonts
+
+#### 其他工具：  
 1. pgAdmin
 2. Git
 3. Heroku CLI
+
+## 檔案說明
+
+
+
+## 
