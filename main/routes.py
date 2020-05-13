@@ -1,20 +1,12 @@
 #路徑模組
 from flask import render_template, url_for, flash, redirect, request
 from main import app, db
-from main.models import User, Event, Team
+from main.models import User, Event, Team, Card, Domain, Notice
 from main.forms import LoginForm, ResetForm, ScanForm
 from flask_login import login_user, current_user, logout_user
 
-'''
-@app.route('/')
-def init_page():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    else:
-        return redirect(url_for('login'))
-'''
 
-
+# 系統分流
 @app.route('/')
 def home():
     if current_user.is_authenticated:
@@ -22,19 +14,25 @@ def home():
     else:
         return redirect(url_for('login'))
 
+
 @app.route('/team')
 def team():
     if current_user.is_authenticated:
         event_list = Event.query.filter_by(team_event_id=1).order_by(Event.time.desc()).all()
         user_list = User.query.all()
-        return render_template('team.html', title='積分系統', user=current_user,
-                                 event_list=event_list, user_list=user_list)
+        return render_template('team.html', title='隊伍資訊', user=current_user,
+                                event_list=event_list, user_list=user_list)
     else:
         return redirect(url_for('login'))
 
+
 @app.route('/rank')
 def rank():
-    return 'rank'
+    if current_user.is_authenticated:
+        return render_template('rank.html', title='個人排名', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route('/info')
 def info():
@@ -43,9 +41,46 @@ def info():
     else:
         return redirect(url_for('login'))
 
-@app.route('/comment')
-def chat():
-    return 'comment'
+
+@app.route('/detail')
+def detail():
+    if current_user.is_authenticated:
+        return render_template('detail.html', title='收支明細', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/notice')
+def notice():
+    if current_user.is_authenticated:
+        return render_template('notice.html', title='通知', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/domain')
+def domain():
+    if current_user.is_authenticated:
+        return render_template('domain.html', title='占領戰', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/dashboard')
+def dashboard():
+    if current_user.is_authenticated:
+        return render_template('dashboard.html', title='後台面板', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/manual')
+def manual():
+    if current_user.is_authenticated:
+        return render_template('manual.html', title='手動模式', user=current_user)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route('/thanks')
 def thanks():
@@ -53,6 +88,7 @@ def thanks():
         return render_template('thanks.html', title='銘謝', user=current_user)
     else:
         return redirect(url_for('login'))
+
 
 @app.route('/scanner', methods=['GET', 'POST'])
 def scanner():
@@ -71,6 +107,7 @@ def scanner():
     else:
         return redirect(url_for('login'))
 
+
 #帳號系統，在此login與reset都是使用同一個模板account.html
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -87,6 +124,7 @@ def login():
         else:
             flash('帳號或密碼錯誤', 'danger')
     return render_template('account.html', form=form, title='登入系統')
+
 
 @app.route('/reset', methods=['GET', 'POST'])
 def reset():
@@ -107,6 +145,7 @@ def reset():
         return render_template('account.html', form=form, title='重設帳戶')
     else:
         return redirect(url_for('login'))
+
 
 @app.route('/logout')
 def logout():

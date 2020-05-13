@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>後臺面板 - 高大資工宿營</title>
+
+  <link href="/static/css/all.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <div id="wrapper">
+    
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <div id="content">
+
+        <!-- 功能導航列 -->
+        <nav class="navbar navbar-expand justify-content-end navbar-light bg-white topbar mb-4 static-top shadow">
+          <button type="button" class="btn m-2 btn-primary">金幣交易</button>
+          <button type="button" class="btn m-2 btn-primary">線索釋放</button>
+          <button type="button" class="btn m-2 btn-primary">關卡佔領</button>
+          <button type="button" class="btn m-2 btn-primary">功能卡</button>
+          <button type="button" class="btn m-2 btn-primary">訊息發布</button>
+          <a href="/team"><button type="button" class="btn m-2 btn-info"><i class="fas fa-home"></i></button></a>
+          <a href="/dashboard"><button type="button" class="btn m-2 btn-info"><i class="fas fa-sync-alt"></i></button></a>
+        </nav>
+        <!-- 結束功能導航列 -->
+
+        <!-- 主要內容 -->
+        <div class="container-fluid">
+
+          <div class="mb-4 ml-3 mt-5">
+            <h6 class="h3 mb-0 text-gray-800">隊伍進度</h6>
+          </div>
+
+          <!-- 第一列 -->
+          <div class="row">
+
+            <!-- 小隊進度卡 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold text-danger mb-1">阿瑞斯小隊 Team Red</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 小隊進度卡 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold text-success mb-1">雅典娜小隊 Team Green</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 小隊進度卡 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold text-warning mb-1">阿波羅小隊 Team Yellow</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 小隊進度卡 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold text-primary mb-1">波賽頓小隊 Team Blue</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mb-4 ml-3 mt-5">
+            <h6 class="h3 mb-0 text-gray-800">其他資訊</h6>
+          </div>
+
+          <!-- 第二列 -->
+          <div class="row">
+
+            <!-- 關卡佔領狀態 -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h5 class="m-0 font-weight-bold text-primary">關卡占領狀態</h5>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="row">
+                    <div class="column col-4">
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡A</p>
+                          <p class="card-text">阿瑞斯小隊</p>
+                        </div>
+                      </div>
+
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡B</p>
+                          <p class="card-text">尚未破關</p>
+                        </div>
+                      </div>
+
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡B</p>
+                          <p class="card-text">尚未破關</p>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+                    <div class="column col-4">
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡A</p>
+                          <p class="card-text">阿瑞斯小隊</p>
+                        </div>
+                      </div>
+
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡B</p>
+                          <p class="card-text">尚未破關</p>
+                        </div>
+                      </div>
+
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡B</p>
+                          <p class="card-text">尚未破關</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="column col-4">
+                      <div class="card  mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡A</p>
+                          <p class="card-text">阿瑞斯小隊</p>
+                        </div>
+                      </div>
+
+                      <div class="card mb-4", style="border-radius: 40px;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                          <p class="card-text">關卡B</p>
+                          <p class="card-text">尚未破關</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+
+            <!-- 各小隊金幣 -->
+            <div class="col-lg-4">
+              <div class="card shadow mb-4">
+
+                <!-- Card Header -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h5 class="m-0 font-weight-bold text-primary">各小隊金幣</h5>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body">
+
+                  <div class="mb-4">
+                    <div class="card bg-danger text-white shadow">
+                      <div class="d-flex card-body justify-content-between">
+                        <h6 class="mt-3">阿瑞斯小隊</h6>
+                        <h3 class="mt-2">$ 200</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="card bg-success text-white shadow">
+                      <div class="d-flex card-body justify-content-between">
+                        <h6 class="mt-3">雅典娜小隊</h6>
+                        <h3 class="mt-2">$ 200</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="card bg-warning text-white shadow">
+                      <div class="d-flex card-body justify-content-between">
+                        <h6 class="mt-3">阿波羅小隊</h6>
+                        <h3 class="mt-2">$ 200</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="card bg-primary text-white shadow">
+                      <div class="d-flex card-body justify-content-between">
+                        <h6 class="mt-3">波賽頓小隊</h6>
+                        <h3 class="mt-2">$ 200</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <!-- 第三列 -->
+          <div class="row">
+
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow mb-4">
+
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">功能卡狀態</h5>
+                </div>
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-10 tab-content" id="v-pills-tabContent">
+                      <div class="tab-pane fade show active" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab">阿瑞斯狀態</div>
+                      <div class="tab-pane fade" id="v-pills-green" role="tabpanel" aria-labelledby="v-pills-green-tab">雅典娜狀態</div>
+                      <div class="tab-pane fade" id="v-pills-yellow" role="tabpanel" aria-labelledby="v-pills-yellow-tab">阿波羅狀態</div>
+                      <div class="tab-pane fade" id="v-pills-blue" role="tabpanel" aria-labelledby="v-pills-blue-tab">波賽頓狀態</div>
+                    </div>
+                    
+                    <div class="col-lg-2 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <a class="nav-link active" id="v-pills-red-tab" data-toggle="pill" href="#v-pills-red" role="tab" aria-controls="v-pills-red" aria-selected="true">阿瑞斯</a>
+                      <a class="nav-link" id="v-pills-green-tab" data-toggle="pill" href="#v-pills-green" role="tab" aria-controls="v-pills-green" aria-selected="false">雅典娜</a>
+                      <a class="nav-link" id="v-pills-yellow-tab" data-toggle="pill" href="#v-pills-yellow" role="tab" aria-controls="v-pills-yellow" aria-selected="false">阿波羅</a>
+                      <a class="nav-link" id="v-pills-blue-tab" data-toggle="pill" href="#v-pills-blue" role="tab" aria-controls="v-pills-blue" aria-selected="false">波賽頓</a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+            <!-- 訊息串 -->
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow mb-4">
+
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">大會訊息</h5>
+                </div>
+
+                <div class="card-body">
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 交易明細表 -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h5 class="m-0 font-weight-bold text-primary">交易明細表</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                      <th>Age</th>
+                      <th>Start date</th>
+                      <th>Salary</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                      <td>61</td>
+                      <td>2011/04/25</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>Donna Snider</td>
+                      <td>Customer Support</td>
+                      <td>New York</td>
+                      <td>27</td>
+                      <td>2011/01/25</td>
+                      <td>$112,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!-- 結束主要內容 -->
+
+      </div>
+      
+
+      <!-- 頁尾 -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; 高大資工宿營 2020</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- Boostrap 核心 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
