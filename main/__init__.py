@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '85ad229cd598f387664cd5f75dff022c'
 
 # 資料庫組態參數
-Env = 'PUB'
+Env = 'DEV'
 if Env == 'DEV':
     p_dir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
