@@ -4,7 +4,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
     <title>{{ title }} - 高大資工宿營</title>
     <!--網站圖示-->
     <link rel="icon" href="/static/imgs/favicon.ico" type="image/x-icon">
@@ -33,51 +34,51 @@
         <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
 
         {% if title == '重設帳戶' %}
-            {{ form.nickname.label(class="sr-only") }}
-            {% if form.nickname.errors %}
-                {{ form.nickname(class="form-control ac-box is-invalid") }}
-            {% else %}
-                {{ form.nickname(class="form-control ac-box")}}
-            {% endif %}
+        {{ form.nickname.label(class="sr-only") }}
+        {% if form.nickname.errors %}
+        {{ form.nickname(class="form-control ac-box is-invalid") }}
+        {% else %}
+        {{ form.nickname(class="form-control ac-box")}}
         {% endif %}
-        
+        {% endif %}
+
         {{ form.account.label(class="sr-only") }}
         {% if form.account.errors %}
-            {{ form.account(class="form-control ac-box is-invalid") }}
+        {{ form.account(class="form-control ac-box is-invalid") }}
         {% else %}
-            {{ form.account(class="form-control ac-box")}}
+        {{ form.account(class="form-control ac-box")}}
         {% endif %}
-        
+
         {{ form.password.label(class="sr-only") }}
         {% if form.password.errors %}
-            {{ form.password(class="form-control pw-box is-invalid") }}
+        {{ form.password(class="form-control pw-box is-invalid") }}
         {% else %}
-            {{ form.password(class="form-control pw-box")}}
+        {{ form.password(class="form-control pw-box")}}
         {% endif %}
 
         <!--快顯錯誤提示-->
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    <span>{{ message }}</span>
-                </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            <span>{{ message }}</span>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
 
         {% if title == '登入系統' %}
-            <div class="alert alert-danger invalid-feedback">
-                <span>帳號或密碼長度錯誤</span>
-            </div>
-            <div class="checkbox mb-3">
-                {{ form.remember(class="form-check-iuput") }}
-                {{ form.remember.label(class="form-check-label") }}
-            </div>
+        <div class="alert alert-danger invalid-feedback">
+            <span>帳號或密碼長度錯誤</span>
+        </div>
+        <div class="checkbox mb-3">
+            {{ form.remember(class="form-check-iuput") }}
+            {{ form.remember.label(class="form-check-label") }}
+        </div>
         {% else %}
-            <div class="alert alert-danger invalid-feedback">
-                <span>帳號或密碼長度錯誤</span>
-            </div>
+        <div class="alert alert-danger invalid-feedback">
+            <span>帳號或密碼長度錯誤</span>
+        </div>
         {% endif %}
 
         {{ form.submit.label(class="sr-only") }}
