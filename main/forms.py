@@ -101,7 +101,7 @@ class CardForm(FlaskForm):
         (3, '阿波羅小隊'), 
         (4, '波賽頓小隊')
     ],validators=[InputRequired(), DataRequired()], coerce=int)
-    stageSelect = SelectField('選取關卡', choices=[
+    stageSelect1 = SelectField('選取關卡', choices=[
         (0, '請選擇'),
         (1, '關卡A'),
         (2, '關卡B'),

@@ -5,6 +5,17 @@ from main import app, db
 from main.forms import (CardForm, ClueForm, DomainForm, InfoForm, LoginForm,
                         ResetForm, TradeForm)
 from main.models import BanCard, Domain, Event, Notice, Team, User
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+# 計時器，檢查功能卡狀態
+import time
+def checkStatus():
+    print(time.strftime('%A, %d. %B %Y %I:%M:%S %p'))
+
+scheduler = BackgroundScheduler() 
+# scheduler.add_job(func=checkStatus, trigger="interval", seconds=3)
+# scheduler.start()
 
 
 # 系統分流
@@ -68,11 +79,22 @@ def domain():
 def dashboard():
     if current_user.is_authenticated:
         tradeform = TradeForm()
+        clueform = ClueForm()
+        domainform = DomainForm()
+        cardform = CardForm()
         infoform = InfoForm()
 
+        teamList = Team.query.all()
+
         if tradeform.validate_on_submit():
-            print(tradeform.team_id.data)
-            print(tradeform.coins.data)
+            # print(tradeform.team_id.data)
+            # print(tradeform.coins.data)
+            newEvent = Event(coins=tradeform.coins.data, 
+                            sender_id=current_user.id, team_id=tradeform.team_id.data)
+            targetTeam = Team.query.filter_by(id=tradeform.team_id.data).first()
+            targetTeam.team_coins = targetTeam.team_coins + tradeform.coins.data
+            db.session.add(targetTeam)
+            db.session.commit()
             return redirect(url_for('dashboard'))
         '''驗證錯誤輸入
         else:
@@ -81,12 +103,33 @@ def dashboard():
             if 'coins' in tradeform.errors.keys():
                 flash('請勿輸入非整數字元', 'danger')
         '''
+        if cardform.validate_on_submit():
+            print(cardform.card.data)
+            print(cardform.team_sent.data)
+            print(cardform.team_recieve.data)
+            print(cardform.stageSelect1.data)
+            return redirect(url_for('dashboard'))
+
+        if clueform.validate_on_submit():
+            print(clueform.team_id.data)
+            print(clueform.clues.data)
+            targetTeam = Team.query.filter_by(id=clueform.team_id.data).first()
+            targetTeam.clues += clueform.clues.data
+            db.session.add(targetTeam)
+            db.session.commit()
+            return redirect(url_for('dashboard'))
+
+        if domainform.validate_on_submit():
+            print(domainform.stageSelect.data)
+            print(domainform.team_id.data)
+            return redirect(url_for('dashboard'))
 
         if infoform.validate_on_submit():
             print(infoform.text.data)
             return redirect(url_for('dashboard'))
 
-        return render_template('dashboard.html', tradeform=tradeform, infoform=infoform)
+        return render_template('dashboard.html', tradeform=tradeform, infoform=infoform,
+                            clueform=clueform, domainform=domainform, cardform=cardform, teamList=teamList)
     else:
         return redirect(url_for('login'))
 

@@ -39,7 +39,7 @@ class Team(db.Model):
     # id = 5 : 工作人員
 
     def __repr__(self):
-        return f"Team('{self.members}')"
+        return f"Team(代號'{self.id}',目前金幣'{self.team_coins}')"
 
 
 class Event(db.Model):

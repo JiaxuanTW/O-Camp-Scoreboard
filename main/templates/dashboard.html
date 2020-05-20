@@ -29,21 +29,20 @@
 </head>
 
 <body id="page-top">
-
 	<div id="wrapper">
-
 		<div id="content-wrapper" class="d-flex flex-column">
-
 			<div id="content">
-
 				<!-- 功能導航列 -->
 				<nav class="navbar navbar-expand justify-content-end navbar-light 
 							bg-white topbar mb-4 static-top shadow">
 					<button type="button" class="btn m-2 btn-primary" data-toggle="modal"
 						data-target="#tradeModal">金幣交易</button>
-					<button type="button" class="btn m-2 btn-primary">線索釋放</button>
-					<button type="button" class="btn m-2 btn-primary">關卡佔領</button>
-					<button type="button" class="btn m-2 btn-primary">功能卡</button>
+					<button type="button" class="btn m-2 btn-primary" data-toggle="modal"
+						data-target="#clueModal">線索釋放</button>
+					<button type="button" class="btn m-2 btn-primary" data-toggle="modal"
+						data-target="#domainModal">關卡佔領</button>
+					<button type="button" class="btn m-2 btn-primary" data-toggle="modal"
+						data-target="#cardModal">功能卡</button>
 					<button type="button" class="btn m-2 btn-primary" data-toggle="modal"
 						data-target="#infoModal">訊息發布</button>
 					<a href="/team"><button type="button" class="btn m-2 btn-info"><i
@@ -72,12 +71,12 @@
 											<div class="font-weight-bold text-danger mb-1">阿瑞斯小隊 Team Red</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ teamList[0].clues }}</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-danger" role="progressbar"
-															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+													style="width: {{ teamList[0].clues/22*100 }}%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
 													</div>
 												</div>
@@ -100,12 +99,12 @@
 											<div class="font-weight-bold text-success mb-1">雅典娜小隊 Team Green</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ teamList[1].clues }}</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-success" role="progressbar"
-															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+															style="width: {{ teamList[1].clues/22*100 }}%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
 													</div>
 												</div>
@@ -128,12 +127,12 @@
 											<div class="font-weight-bold text-warning mb-1">阿波羅小隊 Team Yellow</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ teamList[2].clues }}</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-warning" role="progressbar"
-															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+															style="width: {{ teamList[2].clues/22*100 }}%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
 													</div>
 												</div>
@@ -156,12 +155,12 @@
 											<div class="font-weight-bold text-primary mb-1">波賽頓小隊 Team Blue</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ teamList[3].clues }}</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-primary" role="progressbar"
-															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+															style="width: {{ teamList[3].clues/22*100 }}%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
 													</div>
 												</div>
@@ -310,7 +309,7 @@
 										<div class="card bg-danger text-white shadow">
 											<div class="d-flex card-body justify-content-between">
 												<h6 class="mt-3">阿瑞斯小隊</h6>
-												<h3 class="mt-2">$ 200</h3>
+												<h3 class="mt-2">$ {{ teamList[0].team_coins }}</h3>
 											</div>
 										</div>
 									</div>
@@ -319,7 +318,7 @@
 										<div class="card bg-success text-white shadow">
 											<div class="d-flex card-body justify-content-between">
 												<h6 class="mt-3">雅典娜小隊</h6>
-												<h3 class="mt-2">$ 200</h3>
+												<h3 class="mt-2">$ {{ teamList[1].team_coins }}</h3>
 											</div>
 										</div>
 									</div>
@@ -328,7 +327,7 @@
 										<div class="card bg-warning text-white shadow">
 											<div class="d-flex card-body justify-content-between">
 												<h6 class="mt-3">阿波羅小隊</h6>
-												<h3 class="mt-2">$ 200</h3>
+												<h3 class="mt-2">$ {{ teamList[2].team_coins }}</h3>
 											</div>
 										</div>
 									</div>
@@ -337,7 +336,7 @@
 										<div class="card bg-primary text-white shadow">
 											<div class="d-flex card-body justify-content-between">
 												<h6 class="mt-3">波賽頓小隊</h6>
-												<h3 class="mt-2">$ 200</h3>
+												<h3 class="mt-2">$ {{ teamList[3].team_coins }}</h3>
 											</div>
 										</div>
 									</div>
@@ -492,10 +491,9 @@
 
 				</div>
 				<!-- 結束主要內容 -->
-
 			</div>
 
-			<!-- 跳出式表單 -->
+
 			<!-- 金幣交易 -->
 			<div class="modal fade" id="tradeModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -523,15 +521,15 @@
 									{{ tradeform.coins.label }}
 									{{ tradeform.coins(class="form-control", autocomplete="off") }}
 								</div>
-								
+
 								{% with messages = get_flashed_messages(with_categories=true) %}
-									{% if messages %}
-										{% for category, message in messages %}
-											<div id="tradeflash" class="alert alert-{{ category }}">
-												<span>{{ message }}</span>
-											</div>
-										{% endfor %}
-									{% endif %}
+								{% if messages %}
+								{% for category, message in messages %}
+								<div id="tradeflash" class="alert alert-{{ category }}">
+									<span>{{ message }}</span>
+								</div>
+								{% endfor %}
+								{% endif %}
 								{% endwith %}
 
 								<div class="modal-footer">
@@ -539,7 +537,7 @@
 										onclick="location.href='/dashboard'">取消</button>
 									{{ tradeform.submit.label(class="sr-only") }}
 									{{ tradeform.submit(class="btn btn-primary") }}
-									
+
 								</div>
 
 							</form>
@@ -548,7 +546,7 @@
 				</div>
 			</div>
 
-			<script>
+			<script> //已經停用了這個功能
 				$(document).ready(function () { //頁面載入完成呼叫
 					if ($('#tradeflash').length) { //當有錯誤訊息產生
 						$('#tradeModal').modal('show'); //顯示 Modal
@@ -557,9 +555,199 @@
 			</script>
 			<!-- 結束金幣交易 -->
 
-			<!-- 訊息發布 -->
-			<div class="modal fade" id="infoModal" tabindex="-1" role="dialog"
+
+			<!-- 線索釋放 -->
+			<div class="modal fade" id="clueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">線索釋放</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">
+							<form id="clueform" method="POST" action="">
+
+								{{ clueform.hidden_tag() }}
+								<div class="form-group mb-4">
+									<i class="fas fa-users ml-2 mr-1"></i>
+									{{ clueform.team_id.label }}
+									{{ clueform.team_id(class="form-control") }}
+								</div>
+								<div class="form-group">
+									<i class="fas fa-coins ml-2 mr-1"></i>
+									{{ clueform.clues.label }}
+									{{ clueform.clues(class="form-control", autocomplete="off") }}
+								</div>
+
+								{% with messages = get_flashed_messages(with_categories=true) %}
+								{% if messages %}
+								{% for category, message in messages %}
+								<div id="clueflash" class="alert alert-{{ category }}">
+									<span>{{ message }}</span>
+								</div>
+								{% endfor %}
+								{% endif %}
+								{% endwith %}
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										onclick="location.href='/dashboard'">取消</button>
+									{{ clueform.submit.label(class="sr-only") }}
+									{{ clueform.submit(class="btn btn-primary") }}
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 結束線索釋放 -->
+
+			<!-- 關卡佔領 -->
+			<div class="modal fade" id="domainModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">關卡佔領</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">
+							<form id="domainform" method="POST" action="">
+
+								{{ domainform.hidden_tag() }}
+								<div class="form-group">
+									<i class="fas fa-coins ml-2 mr-1"></i>
+									{{ domainform.stageSelect.label }}
+									{{ domainform.stageSelect(class="form-control") }}
+								</div>
+
+								<div class="form-group mb-4">
+									<i class="fas fa-users ml-2 mr-1"></i>
+									{{ domainform.team_id.label }}
+									{{ domainform.team_id(class="form-control") }}
+								</div>
+
+								{% with messages = get_flashed_messages(with_categories=true) %}
+								{% if messages %}
+								{% for category, message in messages %}
+								<div id="domainflash" class="alert alert-{{ category }}">
+									<span>{{ message }}</span>
+								</div>
+								{% endfor %}
+								{% endif %}
+								{% endwith %}
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										onclick="location.href='/dashboard'">取消</button>
+									{{ domainform.submit.label(class="sr-only") }}
+									{{ domainform.submit(class="btn btn-primary") }}
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 結束關卡佔領 -->
+
+
+			<!-- 功能卡 -->
+			<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">關卡佔領</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">
+							<form id="cardform" method="POST" action="">
+
+								{{ cardform.hidden_tag() }}
+								<div class="form-group">
+									<i class="fas fa-coins ml-2 mr-1"></i>
+									{{ cardform.card.label }}
+									{{ cardform.card(class="form-control", onchange="process(this.options[this.selectedIndex].value);") }}
+								</div>
+
+								<div class="form-group mb-4">
+									<i class="fas fa-users ml-2 mr-1"></i>
+									{{ cardform.team_sent.label }}
+									{{ cardform.team_sent(class="form-control") }}
+								</div>
+
+								<div class="form-group mb-4">
+									<i class="fas fa-users ml-2 mr-1"></i>
+									{{ cardform.team_recieve.label }}
+									{{ cardform.team_recieve(class="form-control") }}
+								</div>
+
+								<div class="form-group mb-4">
+									<i class="fas fa-users ml-2 mr-1"></i>
+									{{ cardform.stageSelect1.label }}
+									{{ cardform.stageSelect1(class="form-control") }}
+								</div>
+
+								{% with messages = get_flashed_messages(with_categories=true) %}
+								{% if messages %}
+								{% for category, message in messages %}
+								<div id="cardflash" class="alert alert-{{ category }}">
+									<span>{{ message }}</span>
+								</div>
+								{% endfor %}
+								{% endif %}
+								{% endwith %}
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										onclick="location.href='/dashboard'">取消</button>
+									{{ cardform.submit.label(class="sr-only") }}
+									{{ cardform.submit(class="btn btn-primary") }}
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script language="javascript">
+				$('#stageSelect1').attr('readonly', true);
+				function process(index) {
+					console.log(index);
+					if (index == 5) {
+						console.log('輸入5');
+						$('#stageSelect1').attr('readonly', false);
+					}
+					else {
+						console.log('輸入其他');
+						$('#stageSelect1').attr('readonly', true);
+					}
+				}
+			</script>
+			<!-- 結束功能卡 -->
+
+			<!-- 訊息發布 -->
+			<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 
@@ -585,7 +773,7 @@
 										onclick="location.href='/dashboard'">取消</button>
 									{{ infoform.submit.label(class="sr-only") }}
 									{{ infoform.submit(class="btn btn-primary") }}
-									
+
 								</div>
 
 							</form>
@@ -593,11 +781,6 @@
 					</div>
 				</div>
 			</div>
-
-			
-
-			<!-- 金幣交易 -->
-
 
 			<!-- 頁尾 -->
 			<footer class="sticky-footer bg-white">
@@ -609,9 +792,7 @@
 			</footer>
 
 		</div>
-
 	</div>
-
 </body>
 
 </html>
