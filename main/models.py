@@ -26,7 +26,7 @@ class Team(db.Model):
     members = db.relationship('User', backref='member', lazy=True)
     clues = db.Column(db.Integer, nullable=False, default=0)
     clueCardStatus = db.Column(db.Integer, nullable=False, default=0)
-    clueCardContent = db.Column(db.String(10))  # 表示從哪個小隊發送的線索卡
+    clueCardContent = db.Column(db.String(10))  # 表示從哪個小隊發送的
     isolateCardStatus = db.Column(db.Integer, nullable=False, default=0)
     isolateCardTime = db.Column(db.DateTime)
     selfBanCardStatus = db.Column(db.Integer, nullable=False, default=0)

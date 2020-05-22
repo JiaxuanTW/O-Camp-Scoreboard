@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (BooleanField, IntegerField, PasswordField, SelectField,
-                     StringField, SubmitField)
+                    StringField, SubmitField)
 from wtforms.validators import DataRequired, EqualTo, InputRequired, Length
 
 
@@ -32,7 +32,7 @@ class TradeForm(FlaskForm):
         (4, '波賽頓小隊')
     ],validators=[InputRequired(), DataRequired()], coerce=int)
     coins = IntegerField('交易款項', validators=[InputRequired(), DataRequired()], render_kw={
-                         "placeholder": "請輸入金幣數量", "inputmode": "numeric"})
+                        "placeholder": "請輸入金幣數量", "inputmode": "numeric"})
     submit = SubmitField('送出')
 
 
@@ -45,7 +45,7 @@ class ClueForm(FlaskForm):
         (4, '波賽頓小隊')
     ],validators=[InputRequired(), DataRequired()], coerce=int)
     clues = IntegerField('變更數量', validators=[InputRequired(), DataRequired()], render_kw={
-                         "placeholder": "請輸入變更數量", "inputmode": "numeric"})
+                        "placeholder": "請輸入變更數量", "inputmode": "numeric"})
     submit = SubmitField('送出')
 
 
@@ -73,7 +73,7 @@ class DomainForm(FlaskForm):
 
 class InfoForm(FlaskForm):
     text = StringField('訊息', validators=[DataRequired()], render_kw={
-                       "placeholder": "輸入文字訊息"})
+                        "placeholder": "輸入文字訊息"})
     submit = SubmitField('送出')
 
 
@@ -82,10 +82,11 @@ class CardForm(FlaskForm):
         (0, '請選取'),
         (1, '線索增益'),
         (2, '線索減益'),
-        (3, '不是減益是檢疫'),
-        (4, '終止檢疫'),
+        (3, '結束線索效益'),
+        (4, '我BAN我自己'),
         (5, '禁止闖關'),
-        (6, '我ban我自己')
+        (6, '不是減益是檢疫'),
+        (7, '結束檢疫')
     ], validators=[DataRequired(), InputRequired()], coerce=int)
     team_sent = SelectField('選取使用卡片小隊', choices=[
         (0, '請選擇'), 
@@ -93,8 +94,8 @@ class CardForm(FlaskForm):
         (2, '雅典娜小隊'), 
         (3, '阿波羅小隊'), 
         (4, '波賽頓小隊')
-    ],validators=[InputRequired(), DataRequired()], coerce=int)
-    team_recieve = SelectField('選取卡片作用小隊', choices=[
+    ], coerce=int)
+    team_receive = SelectField('選取卡片作用小隊', choices=[
         (0, '請選擇'), 
         (1, '阿瑞斯小隊'), 
         (2, '雅典娜小隊'), 
@@ -112,4 +113,4 @@ class CardForm(FlaskForm):
         (7, '關卡G'),
         (8, '關卡H'),
     ], coerce=int)
-    submit = SubmitField('送出')
+    submitCardForm = SubmitField('送出')

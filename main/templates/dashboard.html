@@ -8,14 +8,20 @@
 
 	<title>後臺面板 - 高大資工宿營</title>
 
+	<!-- 字型引擎 -->
 	<link href="/static/css/all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+	<!-- 樣式表 -->
 	<link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+	
+	<!-- 網站圖示 -->
+	<link rel="icon" href="/static/imgs/favicon.ico" type="image/x-icon">
+	
 
-	<!-- Boostrap & jQuery 核心 -->
+	<!-- Bootstrap & jQuery 核心 -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -24,6 +30,16 @@
 		crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+
+	<!-- 時間在地化 -->
+	{{ moment.include_moment() }}
+	{{ moment.locale("zh_TW") }}
+
+	<!-- 資料表 -->
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 
 </head>
@@ -195,90 +211,199 @@
 								<div class="card-body">
 
 									<div class="row">
-										<div class="column col-4">
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡A</p>
-													<p class="card-text">阿瑞斯小隊</p>
+										<div class="column col-6">
+											<div class="card mb-4 
+												{% if domainList[0].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[0].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡A</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡A</h5>
+														{% if domainList[0].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[0].time).format('LLL') }}</p>
+														{% elif domainList[0].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[0].time).format('LLL') }}</p>
+														{% elif domainList[0].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[0].time).format('LLL') }}</p>
+														{% elif domainList[0].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[0].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
+											<div class="card mb-4 
+												{% if domainList[1].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[1].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡B</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡B</h5>
+														{% if domainList[1].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[1].time).format('LLL') }}</p>
+														{% elif domainList[1].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[1].time).format('LLL') }}</p>
+														{% elif domainList[1].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[1].time).format('LLL') }}</p>
+														{% elif domainList[1].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[1].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
+											<div class="card mb-4 
+												{% if domainList[2].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[2].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡C</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡C</h5>
+														{% if domainList[2].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[2].time).format('LLL') }}</p>
+														{% elif domainList[2].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[2].time).format('LLL') }}</p>
+														{% elif domainList[2].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[2].time).format('LLL') }}</p>
+														{% elif domainList[2].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[2].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
+											<div class="card mb-4 
+												{% if domainList[3].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[3].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡D</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡D</h5>
+														{% if domainList[3].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[3].time).format('LLL') }}</p>
+														{% elif domainList[3].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[3].time).format('LLL') }}</p>
+														{% elif domainList[3].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[3].time).format('LLL') }}</p>
+														{% elif domainList[3].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[3].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
 										</div>
 
-										<div class="column col-4">
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡A</p>
-													<p class="card-text">阿瑞斯小隊</p>
+										<div class="column col-6">
+											<div class="card mb-4 
+												{% if domainList[4].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[4].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡E</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡E</h5>
+														{% if domainList[4].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[4].time).format('LLL') }}</p>
+														{% elif domainList[4].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[4].time).format('LLL') }}</p>
+														{% elif domainList[4].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[4].time).format('LLL') }}</p>
+														{% elif domainList[4].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[4].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
+												</div>
+											</div>
+											
+											<div class="card mb-4 
+												{% if domainList[5].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[5].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡F</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡F</h5>
+														{% if domainList[5].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[5].time).format('LLL') }}</p>
+														{% elif domainList[5].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[5].time).format('LLL') }}</p>
+														{% elif domainList[5].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[5].time).format('LLL') }}</p>
+														{% elif domainList[5].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[5].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
+											<div class="card mb-4 
+												{% if domainList[6].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[6].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡G</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡G</h5>
+														{% if domainList[6].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[6].time).format('LLL') }}</p>
+														{% elif domainList[6].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[6].time).format('LLL') }}</p>
+														{% elif domainList[6].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[6].time).format('LLL') }}</p>
+														{% elif domainList[6].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[6].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
-												</div>
-											</div>
-
-											<div class="card mb-4" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">關卡B</p>
-													<p class="card-text">尚未破關</p>
-												</div>
-											</div>
-
-										</div>
-
-										<div class="column col-4">
-											<div class="card  mb-4 bg-info" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">特殊關卡</p>
-													<p class="card-text">阿瑞斯小隊</p>
-												</div>
-											</div>
-
-											<div class="card mb-4 bg-info" , style="border-radius: 40px;">
-												<!--<img src="..." class="card-img-top" alt="...">-->
-												<div class="card-body">
-													<p class="card-text">特殊關卡</p>
-													<p class="card-text">尚未破關</p>
+											<div class="card mb-4 
+												{% if domainList[7].team_id != None %}
+												bg-info
+												{% endif %} 
+												" , style="border-radius: 40px;">
+												<div class="card-body pl-5">
+													{% if domainList[7].team_id == None %}
+														<h5 class="card-title font-weight-bold">關卡H</h5>
+														<p class="card-text">目前尚無小隊破關</p>
+													{% else %}
+														<h5 class="card-title text-white font-weight-bold">關卡H</h5>
+														{% if domainList[7].team_id == 1 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[7].time).format('LLL') }}</p>
+														{% elif domainList[7].team_id == 2 %}
+															<p class="card-text text-white">雅典娜小隊 - {{ moment(domainList[7].time).format('LLL') }}</p>
+														{% elif domainList[7].team_id == 3 %}
+															<p class="card-text text-white">阿波羅小隊 - {{ moment(domainList[7].time).format('LLL') }}</p>
+														{% elif domainList[7].team_id == 4 %}
+															<p class="card-text text-white">阿瑞斯小隊 - {{ moment(domainList[7].time).format('LLL') }}</p>
+														{% endif %}
+													{% endif %}
 												</div>
 											</div>
 
@@ -361,48 +486,241 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-lg-10 tab-content" id="v-pills-tabContent">
+                      <!-- 阿瑞斯狀態卡片 -->
 											<div class="tab-pane fade show active" id="v-pills-red" role="tabpanel"
 												aria-labelledby="v-pills-red-tab">
-
-												<!-- 阿瑞斯狀態卡片 -->
+												
 												<div class="column text-white">
+													{% if teamList[0].clueCardStatus == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
 															<div class="card-body rounded"
 																style="background-color:mediumseagreen;">
-																<h4 class="card-title"><i class="far fa-thumbs-up">
-																		線索增益</i></h4>
-
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-up mr-1"></i>線索增益
+																</h4>
+																<p class="card-text">下回合多拿一個線索</p>
 															</div>
 														</div>
 													</div>
+													{% endif %}
 
+													{% if teamList[0].clueCardStatus == -1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
 															<div class="card-body rounded pb-0"
 																style="background-color:mediumslateblue;">
-																<h4 class="card-title"><i class="far fa-thumbs-down">
-																		線索減益</i></h4>
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>線索減益
+																</h4>
+																<p class="card-text">下回合少拿一個線索</p>
 																<div class="row justify-content-between pl-2 pr-3">
-																	<p class="card-text">下回合少拿一個線索</p>
-																	<p>剩下時間：5m 30s</p>
+																	
 																</div>
 															</div>
 														</div>
 													</div>
+													{% endif %}
+
+													{% if teamList[0].selfBanCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:darkgray">
+																<h4 class="card-title">
+																	<i class="fas fa-ban mr-1"></i>我BAN我自己
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在15分鐘對任何功能卡免疫</p>
+																	<p class="card-text">剩下時間：
+                                    {{ moment(teamList[0].selfBanCardTime).fromNow(True) }}
+                                  </p>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[0].isolateCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在5分鐘內回到主舞台</p>
+                                  <p class="card-text">剩下時間：{{ teamList[0].selfBanCardTime }}</p> 
+                                  <!-- TODO:倒數計時精密度調整 -->
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+                          <!-- TODO:倒數計時到期顯示 -->
+													{% if banCardList[0].stage1_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage1_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage2_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage2_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage3_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage3_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage4_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage4_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage5_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage5_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage6_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage6_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage7_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage7_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+                          {% endif %}
+                          
+                          {% if banCardList[0].stage8_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<p class="card-text">剩下時間：{{ moment(banCardList[0].stage8_time).fromNow(True) }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
 												</div>
-												<!-- 結束阿瑞斯狀態卡片 -->
+                      </div>
+                      <!-- 結束阿瑞斯狀態卡片 -->
 
-											</div>
-
+                      <!-- 雅典娜狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-green" role="tabpanel"
 												aria-labelledby="v-pills-green-tab">
-												雅典娜狀態</div>
+												狀態
+                      </div>
+                      <!-- 結束雅典娜狀態卡片 -->
+                      
+                      <!-- 阿波羅狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-yellow" role="tabpanel"
-												aria-labelledby="v-pills-yellow-tab">阿波羅狀態</div>
+												aria-labelledby="v-pills-yellow-tab">
+												狀態
+                      </div>
+                      <!-- 結束阿波羅狀態卡片 -->
+
+                      <!-- 波賽頓狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-blue" role="tabpanel"
 												aria-labelledby="v-pills-blue-tab">
-												波賽頓狀態</div>
+												狀態
+                      </div>
+                      <!-- 結束波賽頓狀態卡片 -->
+
 										</div>
 
 										<div class="col-lg-2 nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -446,44 +764,49 @@
 
 					</div>
 
-					<!-- 交易明細表 -->
+					<!-- 第四列 - 交易明細表 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h5 class="m-0 font-weight-bold text-primary">交易明細表</h5>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<div class="table-responsive p-2">
+								<table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th>送出人</th>
+											<th>接收小隊</th>
+											<th>交易金額</th>
+											<th>交易時間</th>
 										</tr>
 									</thead>
 
 									<tbody>
+										{% for index in eventList %}
 										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
+											<td>{{ userList[index.sender_id-1].nickname }}</td>
+											<td>{% if index.team_id == 1 %}
+													阿瑞斯小隊
+												{% elif index.team_id == 2 %}
+													雅典娜小隊
+												{% elif index.team_id == 3 %}
+													阿波羅小隊
+												{% elif index.team_id == 4 %}
+													波賽頓小隊
+												{% endif %}
+											</td>
+											<td>{{ index.coins }}</td>
+											<td>{{ moment(index.time).format('LLL') }}</td>
 										</tr>
-										<tr>
-											<td>Donna Snider</td>
-											<td>Customer Support</td>
-											<td>New York</td>
-											<td>27</td>
-											<td>2011/01/25</td>
-											<td>$112,000</td>
-										</tr>
+										{% endfor %}
 									</tbody>
 								</table>
+								
+								<script type="text/javascript"> //建立資料表
+									$(document).ready(function () {
+											$('#dataTable').DataTable();
+										});
+								</script>
 
 							</div>
 						</div>
@@ -494,6 +817,7 @@
 			</div>
 
 
+			<!-- 跳出式表單 -->
 			<!-- 金幣交易 -->
 			<div class="modal fade" id="tradeModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -554,7 +878,6 @@
 				});
 			</script>
 			<!-- 結束金幣交易 -->
-
 
 			<!-- 線索釋放 -->
 			<div class="modal fade" id="clueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -663,7 +986,6 @@
 			</div>
 			<!-- 結束關卡佔領 -->
 
-
 			<!-- 功能卡 -->
 			<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 				aria-hidden="true">
@@ -695,8 +1017,8 @@
 
 								<div class="form-group mb-4">
 									<i class="fas fa-users ml-2 mr-1"></i>
-									{{ cardform.team_recieve.label }}
-									{{ cardform.team_recieve(class="form-control") }}
+									{{ cardform.team_receive.label }}
+									{{ cardform.team_receive(class="form-control") }}
 								</div>
 
 								<div class="form-group mb-4">
@@ -718,8 +1040,8 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										onclick="location.href='/dashboard'">取消</button>
-									{{ cardform.submit.label(class="sr-only") }}
-									{{ cardform.submit(class="btn btn-primary") }}
+									{{ cardform.submitCardForm.label(class="sr-only") }}
+									{{ cardform.submitCardForm(class="btn btn-primary") }}
 
 								</div>
 
@@ -730,18 +1052,34 @@
 			</div>
 
 			<script language="javascript">
-				$('#stageSelect1').attr('readonly', true);
+
+				//初始化disabled欄位，避免不必要的輸入
+				$('#stageSelect1').attr('disabled', true);
+				$('#team_sent').attr('disabled', true);
+
+				//根據指定欄位的值，決定是否解除disabled屬性
 				function process(index) {
 					console.log(index);
 					if (index == 5) {
-						console.log('輸入5');
-						$('#stageSelect1').attr('readonly', false);
+						$('#stageSelect1').attr('disabled', false);
 					}
 					else {
-						console.log('輸入其他');
-						$('#stageSelect1').attr('readonly', true);
+						$('#stageSelect1').attr('disabled', true);
+					}
+
+					if (index == 3 || index == 4 || index == 7){ //結束線索效益
+						$('#team_sent').attr('disabled', true);
+					}
+					else{
+						$('#team_sent').attr('disabled', false);
 					}
 				}
+
+				//欄位disabled的資料Sever無法接收，故送出前解除disabled屬性
+				$("#submitCardForm").click(function () {
+					$('#team_sent').attr('disabled', false);
+					$('#stageSelect1').attr("disabled", false);
+				});
 			</script>
 			<!-- 結束功能卡 -->
 
@@ -781,6 +1119,8 @@
 					</div>
 				</div>
 			</div>
+			<!-- 結束訊息發布 -->
+			<!-- 結束跳出式表單 -->
 
 			<!-- 頁尾 -->
 			<footer class="sticky-footer bg-white">

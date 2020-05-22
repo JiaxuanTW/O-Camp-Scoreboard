@@ -1,7 +1,8 @@
-# 檔案初始化模組
+# 初始化模組
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_moment import Moment
 import os
 
 app = Flask(__name__)
@@ -19,6 +20,9 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
+
+# 時間在地化
+moment = Moment(app)
 
 # 登入系統
 login_manager = LoginManager(app)

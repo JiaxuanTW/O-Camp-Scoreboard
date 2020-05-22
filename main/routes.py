@@ -6,16 +6,56 @@ from main.forms import (CardForm, ClueForm, DomainForm, InfoForm, LoginForm,
                         ResetForm, TradeForm)
 from main.models import BanCard, Domain, Event, Notice, Team, User
 from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime, timedelta
 
 
 # 計時器，檢查功能卡狀態
-import time
 def checkStatus():
-    print(time.strftime('%A, %d. %B %Y %I:%M:%S %p'))
+    teamList = Team.query.all()
+    for index in teamList: # 檢查我BAN我自己是否到期
+        if index.selfBanCardTime != None and datetime.utcnow() > index.selfBanCardTime:
+            index.selfBanCardStatus = 0
+            db.session.add(index)
+            db.session.commit() 
+
+    banCardList = BanCard.query.all() # 檢查禁止闖關是否到期
+    for index in banCardList:
+        if index.stage1_time != None and datetime.utcnow() > index.stage1_time:
+            index.stage1_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage2_time != None and datetime.utcnow() > index.stage2_time:
+            index.stage2_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage3_time != None and datetime.utcnow() > index.stage3_time:
+            index.stage3_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage4_time != None and datetime.utcnow() > index.stage4_time:
+            index.stage4_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage5_time != None and datetime.utcnow() > index.stage5_time:
+            index.stage5_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage6_time != None and datetime.utcnow() > index.stage6_time:
+            index.stage6_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage7_time != None and datetime.utcnow() > index.stage7_time:
+            index.stage7_status = 0
+            db.session.add(index)
+            db.session.commit()
+        if index.stage8_time != None and datetime.utcnow() > index.stage8_time:
+            index.stage8_status = 0
+            db.session.add(index)
+            db.session.commit()
 
 scheduler = BackgroundScheduler() 
-# scheduler.add_job(func=checkStatus, trigger="interval", seconds=3)
-# scheduler.start()
+scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
+scheduler.start()
 
 
 # 系統分流
@@ -84,44 +124,150 @@ def dashboard():
         cardform = CardForm()
         infoform = InfoForm()
 
+        userList = User.query.all()
         teamList = Team.query.all()
+        eventList = Event.query.all() # TODO: 設定順序
+        banCardList = BanCard.query.all()
+        domainList = Domain.query.all()
+        noticeList = Notice.query.all()
 
         if tradeform.validate_on_submit():
-            # print(tradeform.team_id.data)
-            # print(tradeform.coins.data)
             newEvent = Event(coins=tradeform.coins.data, 
                             sender_id=current_user.id, team_id=tradeform.team_id.data)
             targetTeam = Team.query.filter_by(id=tradeform.team_id.data).first()
             targetTeam.team_coins = targetTeam.team_coins + tradeform.coins.data
+            db.session.add(newEvent)
             db.session.add(targetTeam)
             db.session.commit()
             return redirect(url_for('dashboard'))
-        '''驗證錯誤輸入
-        else:
-            if 'team_id' in tradeform.errors.keys():
-                flash('請選取小隊', 'danger')
-            if 'coins' in tradeform.errors.keys():
-                flash('請勿輸入非整數字元', 'danger')
-        '''
+        
         if cardform.validate_on_submit():
-            print(cardform.card.data)
-            print(cardform.team_sent.data)
-            print(cardform.team_recieve.data)
-            print(cardform.stageSelect1.data)
+            targetTeam = Team.query.filter_by(id=cardform.team_receive.data).first()
+
+            if cardform.card.data == 1:
+                targetTeam.clueCardStatus += 1
+                db.session.add(targetTeam)
+                db.session.commit()
+                if targetTeam.clueCardStatus > 1:
+                    targetTeam.clueCardStatus = 1
+                if cardform.team_sent.data == 1:
+                    targetTeam.clueCardContent = '阿瑞斯小隊'
+                if cardform.team_sent.data == 2:
+                    targetTeam.clueCardContent = '雅典娜小隊'
+                if cardform.team_sent.data == 3:
+                    targetTeam.clueCardContent = '阿波羅小隊'
+                if cardform.team_sent.data == 4:
+                    targetTeam.clueCardContent = '波賽頓小隊'
+                db.session.add(targetTeam)
+                db.session.commit()
+
+            if cardform.card.data == 2:
+                targetTeam.clueCardStatus -= 1
+                db.session.add(targetTeam)
+                db.session.commit()
+                if targetTeam.clueCardStatus < 1:
+                    targetTeam.clueCardStatus = -1
+                if cardform.team_sent.data == 1:
+                    targetTeam.clueCardContent = '阿瑞斯小隊'
+                if cardform.team_sent.data == 2:
+                    targetTeam.clueCardContent = '雅典娜小隊'
+                if cardform.team_sent.data == 3:
+                    targetTeam.clueCardContent = '阿波羅小隊'
+                if cardform.team_sent.data == 4:
+                    targetTeam.clueCardContent = '波賽頓小隊'
+                db.session.add(targetTeam)
+                db.session.commit()
+
+            if cardform.card.data == 3:
+                targetTeam.clueCardStatus = 0
+                targetTeam.clueCardContent = None
+                db.session.add(targetTeam)
+                db.session.commit()
+
+            if cardform.card.data == 4: # TODO: 更新發送小隊資訊
+                targetTeam.selfBanCardStatus = 1
+                targetTeam.selfBanCardTime = datetime.utcnow() + timedelta(minutes=15)
+                db.session.add(targetTeam)
+                db.session.commit()
+
+            if cardform.card.data == 5:
+                StageBanTeam = BanCard.query.filter_by(id=cardform.team_receive.data).first()
+                if cardform.stageSelect1.data == 1:
+                    StageBanTeam.stage1_status = 1
+                    StageBanTeam.stage1_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage1_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 2:
+                    StageBanTeam.stage2_status = 1
+                    StageBanTeam.stage2_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage2_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 3:
+                    StageBanTeam.stage3_status = 1
+                    StageBanTeam.stage3_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage3_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 4:
+                    StageBanTeam.stage4_status = 1
+                    StageBanTeam.stage4_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage4_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 5:
+                    StageBanTeam.stage5_status = 1
+                    StageBanTeam.stage5_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage5_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 6:
+                    StageBanTeam.stage6_status = 1
+                    StageBanTeam.stage6_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage6_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 7:
+                    StageBanTeam.stage7_status = 1
+                    StageBanTeam.stage7_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage7_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+                if cardform.stageSelect1.data == 8:
+                    StageBanTeam.stage8_status = 1
+                    StageBanTeam.stage8_time = datetime.utcnow() + timedelta(minutes=15)
+                    StageBanTeam.stage8_content = '停用'
+                    db.session.add(StageBanTeam)
+                    db.session.commit()
+
+            if cardform.card.data == 6:
+                targetTeam.isolateCardStatus = 1
+                targetTeam.isolateCardTime = datetime.utcnow()
+                db.session.add(targetTeam)
+                db.session.commit()
+
+            if cardform.card.data == 7:
+                targetTeam.isolateCardStatus = 0
+                targetTeam.isolateCardTime = None
+                db.session.add(targetTeam)
+                db.session.commit()
+
             return redirect(url_for('dashboard'))
 
         if clueform.validate_on_submit():
-            print(clueform.team_id.data)
-            print(clueform.clues.data)
             targetTeam = Team.query.filter_by(id=clueform.team_id.data).first()
             targetTeam.clues += clueform.clues.data
             db.session.add(targetTeam)
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-        if domainform.validate_on_submit():
-            print(domainform.stageSelect.data)
-            print(domainform.team_id.data)
+        if domainform.validate_on_submit(): # TODO: 設定刪除狀態清單
+            targetDomain = Domain.query.filter_by(id=domainform.stageSelect.data).first()
+            targetDomain.time = datetime.utcnow()
+            targetDomain.team_id = domainform.team_id.data
+            db.session.add(targetDomain)
+            db.session.commit()
             return redirect(url_for('dashboard'))
 
         if infoform.validate_on_submit():
@@ -129,7 +275,9 @@ def dashboard():
             return redirect(url_for('dashboard'))
 
         return render_template('dashboard.html', tradeform=tradeform, infoform=infoform,
-                            clueform=clueform, domainform=domainform, cardform=cardform, teamList=teamList)
+                            clueform=clueform, domainform=domainform, cardform=cardform, 
+                            teamList=teamList, domainList=domainList, eventList=eventList,
+                            userList=userList, banCardList=banCardList)
     else:
         return redirect(url_for('login'))
 
@@ -159,7 +307,7 @@ def scanner():
             user = User.query.filter_by(account=form.team_id.data).first()
             if user:
                 event = Event(coins=form.coins.data,
-                              reciever_id=user.id, team_event_id=user.team_id)
+                            sender_id=user.id, team_event_id=user.team_id)
                 db.session.add(event)
                 db.session.commit()
                 return redirect(url_for('home'))
