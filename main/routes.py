@@ -7,6 +7,7 @@ from main.forms import (CardForm, ClueForm, DomainForm, InfoForm, LoginForm,
 from main.models import BanCard, Domain, Event, Notice, Team, User
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
+import time
 
 
 # 計時器，檢查功能卡狀態
@@ -56,6 +57,12 @@ def checkStatus():
 scheduler = BackgroundScheduler() 
 scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
 scheduler.start()
+
+
+@app.template_filter('timestamp')
+def datetime_to_timestamp(value):
+    value = value + timedelta(hours=8) # 調整時差
+    return value.timestamp()
 
 
 # 系統分流
@@ -243,7 +250,7 @@ def dashboard():
 
             if cardform.card.data == 6:
                 targetTeam.isolateCardStatus = 1
-                targetTeam.isolateCardTime = datetime.utcnow()
+                targetTeam.isolateCardTime = datetime.utcnow() + timedelta(minutes=5)
                 db.session.add(targetTeam)
                 db.session.commit()
 
@@ -265,7 +272,10 @@ def dashboard():
         if domainform.validate_on_submit(): # TODO: 設定刪除狀態清單
             targetDomain = Domain.query.filter_by(id=domainform.stageSelect.data).first()
             targetDomain.time = datetime.utcnow()
-            targetDomain.team_id = domainform.team_id.data
+            if domainform.team_id.data == 5:
+                targetDomain.team_id = None
+            else:
+                targetDomain.team_id = domainform.team_id.data
             db.session.add(targetDomain)
             db.session.commit()
             return redirect(url_for('dashboard'))
@@ -361,3 +371,5 @@ def reset():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+# TODO:增加404路由
