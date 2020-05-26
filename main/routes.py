@@ -61,7 +61,7 @@ scheduler.start()
 
 @app.template_filter('timestamp')
 def datetime_to_timestamp(value):
-    value = value + timedelta(hours=8) # 調整時差
+    # value = value + timedelta(hours=8) # 調整時差
     return value.timestamp()
 
 
