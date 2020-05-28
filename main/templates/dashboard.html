@@ -595,33 +595,6 @@
 													</div>
 													{% endif %}
 
-													<script type="text/javascript"> //毫秒級倒數計時器
-														$(document).ready(function () {
-															setInterval(function () {
-																$(".time_wrap").each(function () { //尋訪所有class屬性值為time_wrap元素
-																	var Obj = this;
-																	var endTime = new Date(parseInt($(Obj).attr('value')) * 1000); //獲取元素value值(時間)
-																	var nowTime = new Date(); //獲取當前時間
-																	var nMS = endTime.getTime() - nowTime.getTime(); //取得時間差(毫秒)
-																	var nD = Math.floor(nMS / (1000 * 60 * 60 * 24));
-																	var nH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
-																	var nM = Math.floor(nMS / (1000 * 60)) % 60;
-																	var nS = Math.floor(nMS / 1000) % 60;
-																	var nMS = Math.floor(nMS) % 1000;
-																	if (nD >= 0) {
-																		var strS = nS.toString().padStart(2, '0')
-																		var strMS = nMS.toString().padStart(3, '0'); //補齊位數
-																		var str = '<span class="timer">剩下 ' + nM + '分 ' + strS + '秒 ' + strMS + '毫秒';
-																		$(Obj).html(str);
-																	}
-																	else{
-																		var str = '<span class="timer">時間到 ';
-																		$(Obj).html(str);
-																	}
-																});
-															}, 1);
-														}); 
-													</script>
 
 													<!-- TODO:倒數計時到期顯示 -->
 													{% if banCardList[0].stage1_status == 1 %}
@@ -1195,6 +1168,34 @@
 					</div>
 				</div>
 			</footer>
+
+			<script type="text/javascript"> //毫秒級倒數計時器
+				$(document).ready(function () {
+					setInterval(function () {
+						$(".time_wrap").each(function () { //尋訪所有class屬性值為time_wrap元素
+							var Obj = this;
+							var endTime = new Date(parseInt($(Obj).attr('value')) * 1000); //獲取元素value值(時間)
+							var nowTime = new Date(); //獲取當前時間
+							var nMS = endTime.getTime() - nowTime.getTime(); //取得時間差(毫秒)
+							var nD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+							var nH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+							var nM = Math.floor(nMS / (1000 * 60)) % 60;
+							var nS = Math.floor(nMS / 1000) % 60;
+							var nMS = Math.floor(nMS) % 1000;
+							if (nD >= 0) {
+								var strS = nS.toString().padStart(2, '0')
+								var strMS = nMS.toString().padStart(3, '0'); //補齊位數
+								var str = '<span class="timer">剩下 ' + nM + '分 ' + strS + '秒 ' + strMS + '毫秒';
+								$(Obj).html(str);
+							}
+							else{
+								var str = '<span class="timer">時間到 ';
+								$(Obj).html(str);
+							}
+						});
+					}, 1);
+				}); 
+			</script>
 
 		</div>
 	</div>

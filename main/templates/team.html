@@ -9,10 +9,33 @@
 <script src="https://unpkg.com/swiper/js/swiper.js"></script>
 <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 
-
-<div class="rounded p-2 mb-4">
-    <img src="/static/imgs/RED.png" width="100%">
-</div>
+<script type="text/javascript"> //毫秒級倒數計時器
+    $(document).ready(function () {
+        setInterval(function () {
+            $(".time_wrap").each(function () { //尋訪所有class屬性值為time_wrap元素
+                var Obj = this;
+                var endTime = new Date(parseInt($(Obj).attr('value')) * 1000); //獲取元素value值(時間)
+                var nowTime = new Date(); //獲取當前時間
+                var nMS = endTime.getTime() - nowTime.getTime(); //取得時間差(毫秒)
+                var nD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+                var nH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+                var nM = Math.floor(nMS / (1000 * 60)) % 60;
+                var nS = Math.floor(nMS / 1000) % 60;
+                var nMS = Math.floor(nMS) % 1000;
+                if (nD >= 0) {
+                    var strS = nS.toString().padStart(2, '0')
+                    var strMS = nMS.toString().padStart(3, '0'); //補齊位數
+                    var str = '<span class="timer">剩下 ' + nM + '分 ' + strS + '秒 ' + strMS + '毫秒';
+                    $(Obj).html(str);
+                }
+                else {
+                    var str = '<span class="timer">時間到 ';
+                    $(Obj).html(str);
+                }
+            });
+        }, 1);
+    }); 
+</script>
 
 <!-- 滑動介面 -->
 <div class="swiper-container">
@@ -29,7 +52,7 @@
                     </div>
                     <div class="card-footer pb-2">
                         <h5 class="m-2 pb-2" style="text-align: right;">擁有
-                            <span class="pct-counter">$9999999 </span>個古金幣
+                            <span class="pct-counter">{{ teamList[0].team_coins }} </span>個古金幣
                         </h5>
                     </div>
                 </div>
@@ -42,11 +65,11 @@
                     <span>尋找線索，破解謎團</span>
                 </div>
                 <div class="tile-progressbar">
-                    <span data-fill="65.5%" style="width: 65.5%;"></span>
+                    <span data-fill=" {{ teamList[0].clues/22*100 }}%" style="width:  {{ teamList[0].clues/22*100 }}%;"></span>
                 </div>
                 <div class="tile-footer">
                     <h5>已取得
-                        <span class="pct-counter">3 </span>個線索
+                        <span class="pct-counter">{{ teamList[0].clues }} </span>個線索
                     </h5>
                 </div>
             </div>
@@ -76,7 +99,7 @@
                 <span>記得隨時來這裡看看</span>
             </div>
         </div>
-        <div class="text-white">
+        <div class="text-white p-1">
             {% if teamList[0].clueCardStatus == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
@@ -104,17 +127,19 @@
             {% endif %}
 
             {% if teamList[0].selfBanCardStatus == 1 %}
-            <div class="col-auto mb-3">
+            <div class="col-auto rounded mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:darkgray">
+                    <div class="card-body pb-0" style="background-color:darkgray;">
                         <h4 class="card-title">
                             <i class="fas fa-ban mr-1"></i>我BAN我自己
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">在15分鐘對任何功能卡免疫</p>
-                            <span class="time_wrap card-text"
-                                value="{{ teamList[0].selfBanCardTime | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:dimgray;">
+                        <p class="time_wrap card-text text-right"
+                                value="{{ teamList[0].selfBanCardTime | timestamp }}"></p>
                     </div>
                 </div>
             </div>
@@ -138,33 +163,6 @@
             </div>
             {% endif %}
 
-            <script type="text/javascript"> //毫秒級倒數計時器
-                $(document).ready(function () {
-                    setInterval(function () {
-                        $(".time_wrap").each(function () { //尋訪所有class屬性值為time_wrap元素
-                            var Obj = this;
-                            var endTime = new Date(parseInt($(Obj).attr('value')) * 1000); //獲取元素value值(時間)
-                            var nowTime = new Date(); //獲取當前時間
-                            var nMS = endTime.getTime() - nowTime.getTime(); //取得時間差(毫秒)
-                            var nD = Math.floor(nMS / (1000 * 60 * 60 * 24));
-                            var nH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
-                            var nM = Math.floor(nMS / (1000 * 60)) % 60;
-                            var nS = Math.floor(nMS / 1000) % 60;
-                            var nMS = Math.floor(nMS) % 1000;
-                            if (nD >= 0) {
-                                var strS = nS.toString().padStart(2, '0')
-                                var strMS = nMS.toString().padStart(3, '0'); //補齊位數
-                                var str = '<span class="timer">剩下 ' + nM + '分 ' + strS + '秒 ' + strMS + '毫秒';
-                                $(Obj).html(str);
-                            }
-                            else {
-                                var str = '<span class="timer">時間到 ';
-                                $(Obj).html(str);
-                            }
-                        });
-                    }, 1);
-                }); 
-            </script>
 
             <!-- TODO:倒數計時到期顯示 -->
             {% if banCardList[0].stage1_status == 1 %}
