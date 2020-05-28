@@ -79,7 +79,12 @@ def home():
 @app.route('/team')
 def team():
     if current_user.is_authenticated:
-        return render_template('team.html', title='隊伍資訊', user=current_user)
+
+        teamList = Team.query.all()
+        banCardList = BanCard.query.all()
+
+        return render_template('team.html', title='隊伍資訊', user=current_user,
+                                teamList=teamList, banCardList=banCardList)
     else:
         return redirect(url_for('login'))
 
