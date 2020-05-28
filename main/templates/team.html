@@ -3,37 +3,65 @@
 
 <!-- 加入樣式表 -->
 <link rel="stylesheet" href="/static/css/team_style.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<!-- JS函式庫 -->
+<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 
-<div class="bg-white rounded shadow border-0 mb-4 p-3">
-    <h4 style="text-align: center;"><strong>Team RED</strong></h4>
+
+<div class="rounded p-2 mb-4">
+    <img src="/static/imgs/RED.png" width="100%">
 </div>
 
-<div class="mb-4">
-    <div class="card shadow">
-        <div class="d-flex card-body justify-content-between">
-            <div class="tile-header">
-                <h4>小隊資產</h4>
-                <span>賺錢乃資工基本之道</span>
+<!-- 滑動介面 -->
+<div class="swiper-container">
+    <div class="swiper-wrapper mb-3">
+        <div class="swiper-slide">
+            <div class="mb-4">
+                <div class="card shadow">
+                    <div class="d-flex card-body justify-content-between">
+                        <div class="tile-header">
+                            <h4>小隊資產</h4>
+                            <span>賺錢乃資工基本之道</span>
+                        </div>
+                        <h3 class="mt-2">$ 5679</h3>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="swiper-slide">
+            <div class="tile-progress tile-pink shadow">
+                <div class="tile-header">
+                    <h4>小隊進度</h4>
+                    <span>尋找線索，破解謎團</span>
+                </div>
+                <div class="tile-progressbar">
+                    <span data-fill="65.5%" style="width: 65.5%;"></span>
+                </div>
+                <div class="tile-footer">
+                    <h5>已取得
+                        <span class="pct-counter">3 </span>個線索
+                    </h5>
+                </div>
             </div>
-            <h3 class="mt-2">$ 5679</h3>
         </div>
     </div>
+    <!-- 分頁標籤 -->
+    <div class="swiper-pagination"></div>
 </div>
 
-<div class="tile-progress tile-pink shadow">
-    <div class="tile-header">
-        <h4>小隊進度</h4>
-        <span>尋找線索，破解謎團</span>
-    </div>
-    <div class="tile-progressbar">
-        <span data-fill="65.5%" style="width: 65.5%;"></span>
-    </div>
-    <div class="tile-footer">
-        <h5>已取得
-            <span class="pct-counter">3 </span>個線索
-        </h5>
-    </div>
-</div>
+<!-- 初始化滑動介面 -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+</script>
+
 
 <div class="bg-white rounded shadow border-0 mb-4">
     <div class="p-3 bg-white rounded">
