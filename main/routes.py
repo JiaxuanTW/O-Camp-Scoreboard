@@ -59,8 +59,10 @@ scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
 scheduler.start()
 
 
+# Jinja引擎 自訂模塊
 @app.template_filter('timestamp')
 def datetime_to_timestamp(value):
+    # TODO: 發布前停用
     # value = value + timedelta(hours=8) # 調整時差
     return value.timestamp()
 
@@ -78,14 +80,6 @@ def home():
 def team():
     if current_user.is_authenticated:
         return render_template('team.html', title='隊伍資訊', user=current_user)
-    else:
-        return redirect(url_for('login'))
-
-
-@app.route('/rank')
-def rank():
-    if current_user.is_authenticated:
-        return render_template('rank.html', title='個人排名', user=current_user)
     else:
         return redirect(url_for('login'))
 
@@ -121,6 +115,14 @@ def domain():
     else:
         return redirect(url_for('login'))
 
+
+@app.route('/thanks')
+def thanks():
+    if current_user.is_authenticated:
+        return render_template('thanks.html', title='銘謝', user=current_user)
+    else:
+        return redirect(url_for('login'))
+        
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -292,22 +294,7 @@ def dashboard():
         return redirect(url_for('login'))
 
 
-@app.route('/manual')
-def manual():
-    if current_user.is_authenticated:
-        return render_template('manual.html', title='手動模式', user=current_user)
-    else:
-        return redirect(url_for('login'))
-
-
-@app.route('/thanks')
-def thanks():
-    if current_user.is_authenticated:
-        return render_template('thanks.html', title='銘謝', user=current_user)
-    else:
-        return redirect(url_for('login'))
-
-
+# QR code 功能已經移除，此介面停用
 @app.route('/scanner', methods=['GET', 'POST'])
 def scanner():
     if current_user.is_authenticated:

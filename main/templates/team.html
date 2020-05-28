@@ -1,34 +1,44 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<div class="bg-white rounded shadow border-0 mb-4">
-    <h4 style="text-align: center; padding-top: 15px;"><strong>目前分數</strong></h4>
-    <h1 style="text-align: center; padding-bottom: 15px;">5000</h1>
+<!-- 加入樣式表 -->
+<link rel="stylesheet" href="/static/css/team_style.css">
+
+<div class="bg-white rounded shadow border-0 mb-4 p-3">
+    <h4 style="text-align: center;"><strong>Team RED</strong></h4>
 </div>
 
-<div class="bg-white rounded shadow border-0">
+<div class="mb-4">
+    <div class="card shadow">
+        <div class="d-flex card-body justify-content-between">
+            <div class="tile-header">
+                <h4>小隊資產</h4>
+                <span>賺錢乃資工基本之道</span>
+            </div>
+            <h3 class="mt-2">$ 5679</h3>
+        </div>
+    </div>
+</div>
+
+<div class="tile-progress tile-pink shadow">
+    <div class="tile-header">
+        <h4>小隊進度</h4>
+        <span>尋找線索，破解謎團</span>
+    </div>
+    <div class="tile-progressbar">
+        <span data-fill="65.5%" style="width: 65.5%;"></span>
+    </div>
+    <div class="tile-footer">
+        <h5>已取得
+            <span class="pct-counter">3 </span>個線索
+        </h5>
+    </div>
+</div>
+
+<div class="bg-white rounded shadow border-0 mb-4">
     <div class="p-3 bg-white rounded">
         <h4 style="text-align: center; padding-bottom: 10px;"><strong>積分明細</strong></h4>
-        <div class="table-responsive">
-            <table id="team_table" style="width:100%" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>隊員</th>
-                        <th>金幣</th>
-                    </tr>
-                </thead>
-                <!--
-                <tbody>
-                    {% for i in event_list %}
-                        <tr>
-                            <td>{{ user_list[i.reciever_id-1].nickname }}</td>
-                            <td>{{ i.coins }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-                -->
-            </table>
-        </div>
+
     </div>
 </div>
 
