@@ -8,7 +8,7 @@ This is a python-flask based website for score recording in 2020 NUK CSIE freshe
 3. 占領戰區塊，即時觀看隊伍關卡破解進度
 4. 道具狀態區塊，即時顯示道具使用情形
 5. 通知列，更新大會資訊與隊伍狀態更新訊息
-6. 個人帳號登入系統
+6. 個人帳號登入系統 
 
 ## 工具與套件
 #### 編輯器：Visual Studio Code  
