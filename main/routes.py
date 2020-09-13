@@ -54,6 +54,7 @@ def checkStatus():
             db.session.add(index)
             db.session.commit()
 
+
 scheduler = BackgroundScheduler() 
 scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
 scheduler.start()
@@ -121,6 +122,7 @@ def domain():
         return redirect(url_for('login'))
 
 
+# 已經移除，此介面停用
 @app.route('/thanks')
 def thanks():
     if current_user.is_authenticated:
