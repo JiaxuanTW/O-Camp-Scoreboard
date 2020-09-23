@@ -5,6 +5,7 @@ from main import app, db
 from main.forms import (CardForm, ClueForm, DomainForm, InfoForm, LoginForm,
                         ResetForm, TradeForm)
 from main.models import BanCard, Domain, Event, Notice, Team, User
+from main.db_initialization import db_init, db_create, db_drop
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
 import time
@@ -60,7 +61,7 @@ scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
 scheduler.start()
 
 
-# Jinja引擎 自訂模塊
+# Jinja引擎 自訂模組
 @app.template_filter('timestamp')
 def datetime_to_timestamp(value):
     # TODO: 發布前停用
@@ -378,5 +379,25 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+
+# ====== 資料庫操作 ====== #
+# TODO: 檢查是否是管理員
+@app.route('/db/create')
+def db_create_route():
+    db_create()
+    return '資料庫建立完成'
+
+
+@app.route('/db/drop')
+def db_drop_route():
+    logout_user()
+    db_drop()
+    return '資料庫刪除完成'
+
+
+@app.route('/db/init')
+def db_init_route():
+    db_init()
+    return '資料庫資料初始化完成'
 
 # TODO:增加404路由

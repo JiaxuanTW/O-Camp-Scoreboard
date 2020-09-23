@@ -36,3 +36,9 @@ This is a python-flask based website for score recording in 2020 NUK CSIE freshe
 
 
 ## 系統設計
+
+
+## 注意事項
+### 登入系統
+* 第一次登入時可以輸入任意字串作為密碼
+* 不可以使用學號作為密碼

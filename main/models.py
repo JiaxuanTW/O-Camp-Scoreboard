@@ -30,10 +30,10 @@ class Team(db.Model):
     clueCardContent = db.Column(db.String(10))  # 表示從哪個小隊發送的
     isolateCardStatus = db.Column(db.Integer, nullable=False, default=0)
     isolateCardTime = db.Column(db.DateTime)
-    # isolateCardContent = db.Column(db.String(10))  # TODO:表示從哪個小隊發送的
+    isolateCardContent = db.Column(db.String(10))  # TODO:表示從哪個小隊發送的
     selfBanCardStatus = db.Column(db.Integer, nullable=False, default=0)
     selfBanCardTime = db.Column(db.DateTime)
-    # selfBanCardContent = db.Column(db.String(10))  # 表示從哪個小隊發送的
+    selfBanCardContent = db.Column(db.String(10))  # 表示從哪個小隊發送的
 
     # id = 1 : 阿瑞斯(R)
     # id = 2 : 雅典娜(G)
@@ -96,7 +96,7 @@ class BanCard(db.Model):
 class Domain(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.DateTime)
-    team_id = db.Column(db.Integer, default=0)
+    team_id = db.Column(db.Integer, default=None)
 
     # id = 1 : 關卡A
     # id = 2 : 關卡B
@@ -106,6 +106,9 @@ class Domain(db.Model):
     # id = 6 : 關卡F
     # id = 7 : 關卡G
     # id = 8 : 關卡H
+
+    def __repr__(self):
+        return f"Domain({self.id}, {self.time}, {self.team_id})"
 
 
 class Notice(db.Model):
