@@ -1,6 +1,246 @@
 {% extends 'layout.html' %}
 {% block content %}
+<!-- 時間在地化 -->
+{{ moment.include_moment() }}
+{{ moment.locale("zh_TW") }}
 
+<div class="mb-4">
+    <div class="card shadow" style="border-radius: 25px;">
+        <div class="d-flex card-body justify-content-between">
+            <div class="tile-header">
+                <h4>占領戰</h4>
+                <span>5G + AI，高大資工起飛</span>
+            </div>
+            <i class="fas fa-flag mt-2" style="font-size: 3rem; color:lightskyblue;"></i>
+        </div>
+        <div class="card-footer pb-2">
+            <div class="column">
+                <div class="card mb-3 
+                        {% if domainList[0].team_id != None %}
+                        bg-info
+                        {% endif %} 
+                        " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[0].team_id == None %}
+                        <h5 class="card-title font-weight-bold">你畫我猜</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">你畫我猜</h5>
+                        {% if domainList[0].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[0].time).format('LLL') }}</p>
+                        {% elif domainList[0].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[0].time).format('LLL') }}</p>
+                        {% elif domainList[0].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[0].time).format('LLL') }}</p>
+                        {% elif domainList[0].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[0].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
 
+                <div class="card mb-3 
+                        {% if domainList[1].team_id != None %}
+                        bg-info
+                        {% endif %} 
+                        " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[1].team_id == None %}
+                        <h5 class="card-title font-weight-bold">全民猜歌大賽</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">全民猜歌大賽</h5>
+                        {% if domainList[1].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[1].time).format('LLL') }}</p>
+                        {% elif domainList[1].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[1].time).format('LLL') }}</p>
+                        {% elif domainList[1].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[1].time).format('LLL') }}</p>
+                        {% elif domainList[1].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[1].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
 
+                <div class="card mb-3 
+                        {% if domainList[2].team_id != None %}
+                        bg-info
+                        {% endif %} 
+                        " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[2].team_id == None %}
+                        <h5 class="card-title font-weight-bold">瑞斯叔叔搬運工</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">瑞斯叔叔搬運工</h5>
+                        {% if domainList[2].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[2].time).format('LLL') }}</p>
+                        {% elif domainList[2].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[2].time).format('LLL') }}</p>
+                        {% elif domainList[2].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[2].time).format('LLL') }}</p>
+                        {% elif domainList[2].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[2].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mb-3 
+                        {% if domainList[3].team_id != None %}
+                        bg-info
+                        {% endif %} 
+                        " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[3].team_id == None %}
+                        <h5 class="card-title font-weight-bold">金盆洗腳</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">金盆洗腳</h5>
+                        {% if domainList[3].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[3].time).format('LLL') }}</p>
+                        {% elif domainList[3].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[3].time).format('LLL') }}</p>
+                        {% elif domainList[3].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[3].time).format('LLL') }}</p>
+                        {% elif domainList[3].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[3].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mb-3 
+                    {% if domainList[4].team_id != None %}
+                    bg-info
+                    {% endif %} 
+                    " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[4].team_id == None %}
+                        <h5 class="card-title font-weight-bold">我最搖擺</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">我最搖擺</h5>
+                        {% if domainList[4].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[4].time).format('LLL') }}</p>
+                        {% elif domainList[4].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[4].time).format('LLL') }}</p>
+                        {% elif domainList[4].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[4].time).format('LLL') }}</p>
+                        {% elif domainList[4].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[4].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mb-3 
+                    {% if domainList[5].team_id != None %}
+                    bg-info
+                    {% endif %} 
+                    " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[5].team_id == None %}
+                        <h5 class="card-title font-weight-bold">N人N+1腳</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">N人N+1腳</h5>
+                        {% if domainList[5].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[5].time).format('LLL') }}</p>
+                        {% elif domainList[5].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[5].time).format('LLL') }}</p>
+                        {% elif domainList[5].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[5].time).format('LLL') }}</p>
+                        {% elif domainList[5].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[5].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mb-3 
+                    {% if domainList[6].team_id != None %}
+                    bg-info
+                    {% endif %} 
+                    " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[6].team_id == None %}
+                        <h5 class="card-title font-weight-bold">含水猜歌</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">含水猜歌</h5>
+                        {% if domainList[6].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[6].time).format('LLL') }}</p>
+                        {% elif domainList[6].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[6].time).format('LLL') }}</p>
+                        {% elif domainList[6].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[6].time).format('LLL') }}</p>
+                        {% elif domainList[6].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[6].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mb-3 
+                    {% if domainList[7].team_id != None %}
+                    bg-info
+                    {% endif %} 
+                    " , style="border-radius: 5px;">
+                    <div class="card-body pl-xl-5 pl-3">
+                        {% if domainList[7].team_id == None %}
+                        <h5 class="card-title font-weight-bold">赫爾莫斯的傳令</h5>
+                        <p class="card-text">目前尚無小隊破關</p>
+                        {% else %}
+                        <h5 class="card-title text-white font-weight-bold">赫爾莫斯的傳令</h5>
+                        {% if domainList[7].team_id == 1 %}
+                        <p class="card-text text-white">阿瑞斯小隊<br>
+                            {{ moment(domainList[7].time).format('LLL') }}</p>
+                        {% elif domainList[7].team_id == 2 %}
+                        <p class="card-text text-white">雅典娜小隊<br>
+                            {{ moment(domainList[7].time).format('LLL') }}</p>
+                        {% elif domainList[7].team_id == 3 %}
+                        <p class="card-text text-white">阿波羅小隊<br>
+                            {{ moment(domainList[7].time).format('LLL') }}</p>
+                        {% elif domainList[7].team_id == 4 %}
+                        <p class="card-text text-white">波賽頓小隊<br>
+                            {{ moment(domainList[7].time).format('LLL') }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

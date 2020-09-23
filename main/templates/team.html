@@ -3,11 +3,13 @@
 
 <!-- 加入樣式表 -->
 <link rel="stylesheet" href="/static/css/team_style.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css"
+    integrity="sha512-uCQmAoax6aJTxC03VlH0uCEtE0iLi83TW1Qh6VezEZ5Y17rTrIE+8irz4H4ehM7Fbfbm8rb30OkxVkuwhXxrRg=="
+    crossorigin="anonymous" />
 <!-- JS函式庫 -->
-<script src="https://unpkg.com/swiper/js/swiper.js"></script>
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"
+    integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww=="
+    crossorigin="anonymous"></script>
 
 <script type="text/javascript"> //毫秒級倒數計時器
     $(document).ready(function () {
@@ -65,7 +67,8 @@
                     <span>尋找線索，破解謎團</span>
                 </div>
                 <div class="tile-progressbar">
-                    <span data-fill=" {{ teamList[0].clues/22*100 }}%" style="width:  {{ teamList[0].clues/22*100 }}%;"></span>
+                    <span data-fill=" {{ teamList[0].clues/22*100 }}%"
+                        style="width:  {{ teamList[0].clues/22*100 }}%;"></span>
                 </div>
                 <div class="tile-footer">
                     <h5>已取得
@@ -139,8 +142,8 @@
                         </div>
                     </div>
                     <div class="card-footer" style="background-color:dimgray;">
-                        <p class="time_wrap card-text text-right"
-                                value="{{ teamList[0].selfBanCardTime | timestamp }}"></p>
+                        <p class="time_wrap card-text text-right" value="{{ teamList[0].selfBanCardTime | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -305,4 +308,18 @@
     </div>
 </div>
 
+
+<div class="mb-4">
+    <div class="card shadow" style="border-radius: 25px;">
+        <div class="d-flex card-body justify-content-between">
+            <div class="tile-header">
+                <h4>交易資訊</h4>
+                <span>交易一定有風險，詳閱公開說明書</span>
+            </div>
+        </div>
+        <div class="card-footer pb-2">
+            
+        </div>
+    </div>
+</div>
 {% endblock %}

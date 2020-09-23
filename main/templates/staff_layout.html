@@ -41,7 +41,8 @@
         <div class="vertical-nav bg-white" id="sidebar" style="z-index: 200;">
             <div class="py-4 px-3 mb-4 bg-light">
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-chevron-left mr-2"></i></button>
-                <div class="media d-flex align-items-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/LACMTA_Circle_Gold_Line.svg/512px-LACMTA_Circle_Gold_Line.svg.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                <div class="media d-flex align-items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commㄧons/thumb/a/a7/LACMTA_Circle_Gold_Line.svg/512px-LACMTA_Circle_Gold_Line.svg.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                         <h4 class="m-0">高大資工宿營</h4>
                         <p class="font-weight-light text-muted mb-0">{{ user.nickname }}，您好</p>
@@ -49,15 +50,36 @@
                 </div>
             </div>
         
-            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">資訊</p>
-        
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="/team" class="nav-link text-dark">
                         <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
-                        隊伍資訊
+                        阿瑞斯小隊
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/team" class="nav-link text-dark">
+                        <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
+                        雅典娜小隊
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/team" class="nav-link text-dark">
+                        <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
+                        阿波羅小隊
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/team" class="nav-link text-dark">
+                        <i class="fa fa-stream mr-3 text-primary fa-fw"></i>
+                        波賽頓小隊
+                    </a>
+                </li>
+            </ul>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">資訊</p>
+
+            <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="/domain" class="nav-link text-dark">
                         <i class="fa fa-comment-dots  mr-3 text-primary fa-fw"></i>
@@ -81,6 +103,18 @@
             <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">功能</p>
 
             <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="/staff_trade" class="nav-link text-dark">
+                        <i class="fa fa-comment-dots  mr-3 text-primary fa-fw"></i>
+                        金幣交易
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/staff_domain" class="nav-link text-dark">
+                        <i class="fa fa-comment-dots  mr-3 text-primary fa-fw"></i>
+                        關卡站領
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link text-dark">
                         <i class="fa fa-sign-out-alt mr-3 text-primary fa-fw"></i>

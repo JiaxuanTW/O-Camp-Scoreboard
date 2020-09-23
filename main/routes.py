@@ -64,7 +64,7 @@ scheduler.start()
 @app.template_filter('timestamp')
 def datetime_to_timestamp(value):
     # TODO: 發布前停用
-    # value = value + timedelta(hours=8) # 調整時差
+    value = value + timedelta(hours=8) # 調整時差
     return value.timestamp()
 
 
@@ -98,6 +98,7 @@ def info():
         return redirect(url_for('login'))
 
 
+# TODO: 可能不會使用，需移除
 @app.route('/detail')
 def detail():
     if current_user.is_authenticated:
@@ -117,7 +118,9 @@ def notice():
 @app.route('/domain')
 def domain():
     if current_user.is_authenticated:
-        return render_template('domain.html', title='占領戰', user=current_user)
+        domainList = Domain.query.all()
+
+        return render_template('domain.html', title='占領戰', user=current_user, domainList=domainList)
     else:
         return redirect(url_for('login'))
 
@@ -130,7 +133,7 @@ def thanks():
     else:
         return redirect(url_for('login'))
         
-
+# ====== 管理員系統 ====== #
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if current_user.is_authenticated:
@@ -289,7 +292,7 @@ def dashboard():
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-        if infoform.validate_on_submit():
+        if infoform.validate_on_submit(): # TODO: 訊息系統資料庫製作
             print(infoform.text.data)
             return redirect(url_for('dashboard'))
 
@@ -322,7 +325,16 @@ def scanner():
         return redirect(url_for('login'))
 
 
-# 帳號系統，在此login與reset都是使用同一個模板 account.html
+@app.route('/staff_team/yellow')
+def staff_team_yellow():
+    return 0
+
+@app.route('/staff_trade')
+def staff_trade():
+    return render_template('staff_trade.html', title='隊伍資訊', user=current_user)
+
+# ====== 帳號系統 ====== #
+# 在此login與reset都是使用同一個模板 account.html
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -365,5 +377,6 @@ def reset():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
 
 # TODO:增加404路由
