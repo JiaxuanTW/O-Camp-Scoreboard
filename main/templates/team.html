@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer pb-2">
                         <h5 class="m-2 pb-2" style="text-align: right;">擁有
-                            <span class="pct-counter">{{ teamList[0].team_coins }} </span>個古金幣
+                            <span class="pct-counter">{{ teamList[team_code].team_coins }} </span>個古金幣
                         </h5>
                     </div>
                 </div>
@@ -67,12 +67,12 @@
                     <span>尋找線索，破解謎團</span>
                 </div>
                 <div class="tile-progressbar">
-                    <span data-fill=" {{ teamList[0].clues/22*100 }}%"
-                        style="width:  {{ teamList[0].clues/22*100 }}%;"></span>
+                    <span data-fill=" {{ teamList[team_code].clues/22*100 }}%"
+                        style="width:  {{ teamList[team_code].clues/22*100 }}%;"></span>
                 </div>
                 <div class="tile-footer">
                     <h5>已取得
-                        <span class="pct-counter">{{ teamList[0].clues }} </span>個線索
+                        <span class="pct-counter">{{ teamList[team_code].clues }} </span>個線索
                     </h5>
                 </div>
             </div>
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="text-white p-1">
-            {% if teamList[0].clueCardStatus == 1 %}
+            {% if teamList[team_code].clueCardStatus == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded" style="background-color:mediumseagreen;">
@@ -117,7 +117,7 @@
             </div>
             {% endif %}
 
-            {% if teamList[0].clueCardStatus == -1 %}
+            {% if teamList[team_code].clueCardStatus == -1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded" style="background-color:mediumslateblue;">
@@ -130,7 +130,7 @@
             </div>
             {% endif %}
 
-            {% if teamList[0].selfBanCardStatus == 1 %}
+            {% if teamList[team_code].selfBanCardStatus == 1 %}
             <div class="col-auto rounded mb-3">
                 <div class="card">
                     <div class="card-body pb-0" style="background-color:darkgray;">
@@ -142,14 +142,14 @@
                         </div>
                     </div>
                     <div class="card-footer" style="background-color:dimgray;">
-                        <p class="time_wrap card-text text-right" value="{{ teamList[0].selfBanCardTime | timestamp }}">
+                        <p class="time_wrap card-text text-right" value="{{ teamList[team_code].selfBanCardTime | timestamp }}">
                         </p>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if teamList[0].isolateCardStatus == 1 %}
+            {% if teamList[team_code].isolateCardStatus == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -159,9 +159,9 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">在5分鐘內回到主舞台</p>
                             <span class="time_wrap card-text"
-                                value="{{ teamList[0].isolateCardTime | timestamp }}"></span>
+                                value="{{ teamList[team_code].isolateCardTime | timestamp }}"></span>
                         </div>
-                        <p class="card-text">時間戳記：{{ teamList[0].isolateCardTime | timestamp }}</p>
+                        <p class="card-text">時間戳記：{{ teamList[team_code].isolateCardTime | timestamp }}</p>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
 
 
             <!-- TODO:倒數計時到期顯示 -->
-            {% if banCardList[0].stage1_status == 1 %}
+            {% if banCardList[team_code].stage1_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -179,14 +179,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage1_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage1_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage2_status == 1 %}
+            {% if banCardList[team_code].stage2_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -196,14 +196,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage2_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage2_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage3_status == 1 %}
+            {% if banCardList[team_code].stage3_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -213,14 +213,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage3_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage3_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage4_status == 1 %}
+            {% if banCardList[team_code].stage4_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -230,14 +230,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage4_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage4_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage5_status == 1 %}
+            {% if banCardList[team_code].stage5_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -247,14 +247,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage5_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage5_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage6_status == 1 %}
+            {% if banCardList[team_code].stage6_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -264,14 +264,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage6_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage6_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage7_status == 1 %}
+            {% if banCardList[team_code].stage7_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -281,14 +281,14 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage7_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage7_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
 
-            {% if banCardList[0].stage8_status == 1 %}
+            {% if banCardList[team_code].stage8_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
                     <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
@@ -298,7 +298,7 @@
                         <div class="row justify-content-between pl-2 pr-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
                             <span class="time_wrap card-text"
-                                value="{{ banCardList[0].stage8_time | timestamp }}"></span>
+                                value="{{ banCardList[team_code].stage8_time | timestamp }}"></span>
                         </div>
                     </div>
                 </div>

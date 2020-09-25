@@ -740,21 +740,636 @@
 											<!-- 雅典娜狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-green" role="tabpanel"
 												aria-labelledby="v-pills-green-tab">
-												狀態
+												<div class="column text-white">
+
+													{% if teamList[1].clueCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumseagreen;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-up mr-1"></i>線索增益
+																</h4>
+																<p class="card-text">下回合多拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[1].clueCardStatus == -1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumslateblue;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>線索減益
+																</h4>
+																<p class="card-text">下回合少拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[1].selfBanCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:darkgray">
+																<h4 class="card-title">
+																	<i class="fas fa-ban mr-1"></i>我BAN我自己
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在15分鐘對任何功能卡免疫</p>
+																	<span class="time_wrap card-text" value="{{ teamList[1].selfBanCardTime | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[1].isolateCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在5分鐘內回到主舞台</p>
+																	<span class="time_wrap card-text" value="{{ teamList[1].isolateCardTime | timestamp }}"></span>
+																</div>
+																<p class="card-text">時間戳記：{{ teamList[1].isolateCardTime | timestamp }}</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+
+													<!-- TODO:倒數計時到期顯示 -->
+													{% if banCardList[1].stage1_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage1_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage2_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage2_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage3_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage3_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage4_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage4_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage5_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage5_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage6_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage6_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage7_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage7_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[1].stage8_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[1].stage8_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+												</div>
 											</div>
 											<!-- 結束雅典娜狀態卡片 -->
 
 											<!-- 阿波羅狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-yellow" role="tabpanel"
 												aria-labelledby="v-pills-yellow-tab">
-												狀態
+												<div class="tab-pane fade show active" id="v-pills-red" role="tabpanel"
+												aria-labelledby="v-pills-red-tab">
+												<div class="column text-white">
+
+													{% if teamList[2].clueCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumseagreen;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-up mr-1"></i>線索增益
+																</h4>
+																<p class="card-text">下回合多拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[2].clueCardStatus == -1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumslateblue;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>線索減益
+																</h4>
+																<p class="card-text">下回合少拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[2].selfBanCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:darkgray">
+																<h4 class="card-title">
+																	<i class="fas fa-ban mr-1"></i>我BAN我自己
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在15分鐘對任何功能卡免疫</p>
+																	<span class="time_wrap card-text" value="{{ teamList[2].selfBanCardTime | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[2].isolateCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在5分鐘內回到主舞台</p>
+																	<span class="time_wrap card-text" value="{{ teamList[2].isolateCardTime | timestamp }}"></span>
+																</div>
+																<p class="card-text">時間戳記：{{ teamList[2].isolateCardTime | timestamp }}</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+
+													<!-- TODO:倒數計時到期顯示 -->
+													{% if banCardList[2].stage1_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage1_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage2_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage2_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage3_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage3_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage4_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage4_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage5_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage5_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage6_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage6_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage7_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage7_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[2].stage8_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[2].stage8_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+												</div>
+											</div>
 											</div>
 											<!-- 結束阿波羅狀態卡片 -->
 
 											<!-- 波賽頓狀態卡片 -->
 											<div class="tab-pane fade" id="v-pills-blue" role="tabpanel"
 												aria-labelledby="v-pills-blue-tab">
-												狀態
+												<div class="tab-pane fade show active" id="v-pills-red" role="tabpanel"
+												aria-labelledby="v-pills-red-tab">
+												<div class="column text-white">
+
+													{% if teamList[3].clueCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumseagreen;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-up mr-1"></i>線索增益
+																</h4>
+																<p class="card-text">下回合多拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[3].clueCardStatus == -1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded"
+																style="background-color:mediumslateblue;">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>線索減益
+																</h4>
+																<p class="card-text">下回合少拿一個線索</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[3].selfBanCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:darkgray">
+																<h4 class="card-title">
+																	<i class="fas fa-ban mr-1"></i>我BAN我自己
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在15分鐘對任何功能卡免疫</p>
+																	<span class="time_wrap card-text" value="{{ teamList[3].selfBanCardTime | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if teamList[3].isolateCardStatus == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">在5分鐘內回到主舞台</p>
+																	<span class="time_wrap card-text" value="{{ teamList[3].isolateCardTime | timestamp }}"></span>
+																</div>
+																<p class="card-text">時間戳記：{{ teamList[3].isolateCardTime | timestamp }}</p>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+
+													<!-- TODO:倒數計時到期顯示 -->
+													{% if banCardList[3].stage1_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage1_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage2_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage2_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage3_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage3_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage4_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage4_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage5_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage5_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage6_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage6_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage7_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage7_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+													{% if banCardList[3].stage8_status == 1 %}
+													<div class="col-auto mb-3">
+														<div class="card">
+															<div class="card-body rounded pb-0"
+																style="background-color:mediumslateblue">
+																<h4 class="card-title">
+																	<i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
+																</h4>
+																<div class="row justify-content-between pl-2 pr-3">
+																	<p class="card-text">禁止遊玩該關卡15分鐘</p>
+																	<span class="time_wrap card-text" value="{{ banCardList[3].stage8_time | timestamp }}"></span>
+																</div>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+
+												</div>
+											</div>
 											</div>
 											<!-- 結束波賽頓狀態卡片 -->
 

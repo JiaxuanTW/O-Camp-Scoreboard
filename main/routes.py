@@ -14,13 +14,13 @@ import time
 # 計時器，檢查功能卡狀態
 def checkStatus():
     teamList = Team.query.all()
-    for index in teamList: # 檢查我BAN我自己是否到期
+    for index in teamList:  # 檢查我BAN我自己是否到期
         if index.selfBanCardTime != None and datetime.utcnow() > index.selfBanCardTime:
             index.selfBanCardStatus = 0
             db.session.add(index)
-            db.session.commit() 
+            db.session.commit()
 
-    banCardList = BanCard.query.all() # 檢查禁止闖關是否到期
+    banCardList = BanCard.query.all()  # 檢查禁止闖關是否到期
     for index in banCardList:
         if index.stage1_time != None and datetime.utcnow() > index.stage1_time:
             index.stage1_status = 0
@@ -56,7 +56,7 @@ def checkStatus():
             db.session.commit()
 
 
-scheduler = BackgroundScheduler() 
+scheduler = BackgroundScheduler()
 scheduler.add_job(func=checkStatus, trigger="interval", seconds=60)
 scheduler.start()
 
@@ -65,7 +65,7 @@ scheduler.start()
 @app.template_filter('timestamp')
 def datetime_to_timestamp(value):
     # TODO: 發布前停用
-    value = value + timedelta(hours=8) # 調整時差
+    value = value + timedelta(hours=8)  # 調整時差
     return value.timestamp()
 
 
@@ -86,7 +86,7 @@ def team():
         banCardList = BanCard.query.all()
 
         return render_template('team.html', title='隊伍資訊', user=current_user,
-                                teamList=teamList, banCardList=banCardList)
+                               teamList=teamList, banCardList=banCardList, team_code=current_user.team_id-1)
     else:
         return redirect(url_for('login'))
 
@@ -133,7 +133,7 @@ def thanks():
         return render_template('thanks.html', title='銘謝', user=current_user)
     else:
         return redirect(url_for('login'))
-        
+
 # ====== 管理員系統 ====== #
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -146,23 +146,25 @@ def dashboard():
 
         userList = User.query.all()
         teamList = Team.query.all()
-        eventList = Event.query.all() # TODO: 設定順序
+        eventList = Event.query.all()  # TODO: 設定順序
         banCardList = BanCard.query.all()
         domainList = Domain.query.all()
         noticeList = Notice.query.all()
 
         if tradeform.validate_on_submit():
-            newEvent = Event(coins=tradeform.coins.data, 
-                            sender_id=current_user.id, team_id=tradeform.team_id.data)
-            targetTeam = Team.query.filter_by(id=tradeform.team_id.data).first()
+            newEvent = Event(coins=tradeform.coins.data,
+                             sender_id=current_user.id, team_id=tradeform.team_id.data)
+            targetTeam = Team.query.filter_by(
+                id=tradeform.team_id.data).first()
             targetTeam.team_coins = targetTeam.team_coins + tradeform.coins.data
             db.session.add(newEvent)
             db.session.add(targetTeam)
             db.session.commit()
             return redirect(url_for('dashboard'))
-        
+
         if cardform.validate_on_submit():
-            targetTeam = Team.query.filter_by(id=cardform.team_receive.data).first()
+            targetTeam = Team.query.filter_by(
+                id=cardform.team_receive.data).first()
 
             if cardform.card.data == 1:
                 targetTeam.clueCardStatus += 1
@@ -204,14 +206,15 @@ def dashboard():
                 db.session.add(targetTeam)
                 db.session.commit()
 
-            if cardform.card.data == 4: # TODO: 更新發送小隊資訊
+            if cardform.card.data == 4:  # TODO: 更新發送小隊資訊
                 targetTeam.selfBanCardStatus = 1
                 targetTeam.selfBanCardTime = datetime.utcnow() + timedelta(minutes=15)
                 db.session.add(targetTeam)
                 db.session.commit()
 
             if cardform.card.data == 5:
-                StageBanTeam = BanCard.query.filter_by(id=cardform.team_receive.data).first()
+                StageBanTeam = BanCard.query.filter_by(
+                    id=cardform.team_receive.data).first()
                 if cardform.stageSelect1.data == 1:
                     StageBanTeam.stage1_status = 1
                     StageBanTeam.stage1_time = datetime.utcnow() + timedelta(minutes=15)
@@ -282,8 +285,9 @@ def dashboard():
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-        if domainform.validate_on_submit(): # TODO: 設定刪除狀態清單
-            targetDomain = Domain.query.filter_by(id=domainform.stageSelect.data).first()
+        if domainform.validate_on_submit():  # TODO: 設定刪除狀態清單
+            targetDomain = Domain.query.filter_by(
+                id=domainform.stageSelect.data).first()
             targetDomain.time = datetime.utcnow()
             if domainform.team_id.data == 5:
                 targetDomain.team_id = None
@@ -293,14 +297,14 @@ def dashboard():
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-        if infoform.validate_on_submit(): # TODO: 訊息系統資料庫製作
+        if infoform.validate_on_submit():  # TODO: 訊息系統資料庫製作
             print(infoform.text.data)
             return redirect(url_for('dashboard'))
 
         return render_template('dashboard.html', tradeform=tradeform, infoform=infoform,
-                            clueform=clueform, domainform=domainform, cardform=cardform, 
-                            teamList=teamList, domainList=domainList, eventList=eventList,
-                            userList=userList, banCardList=banCardList)
+                               clueform=clueform, domainform=domainform, cardform=cardform,
+                               teamList=teamList, domainList=domainList, eventList=eventList,
+                               userList=userList, banCardList=banCardList)
     else:
         return redirect(url_for('login'))
 
@@ -315,7 +319,7 @@ def scanner():
             user = User.query.filter_by(account=form.team_id.data).first()
             if user:
                 event = Event(coins=form.coins.data,
-                            sender_id=user.id, team_event_id=user.team_id)
+                              sender_id=user.id, team_event_id=user.team_id)
                 db.session.add(event)
                 db.session.commit()
                 return redirect(url_for('home'))
@@ -328,11 +332,63 @@ def scanner():
 
 @app.route('/staff_team/yellow')
 def staff_team_yellow():
-    return 0
+    if current_user.is_authenticated:
 
-@app.route('/staff_trade')
+        teamList = Team.query.all()
+        banCardList = BanCard.query.all()
+
+        return render_template('team.html', title='隊伍資訊', user=current_user,
+                               teamList=teamList, banCardList=banCardList, team_code=0)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/staff_trade', methods=['GET', 'POST'])
 def staff_trade():
-    return render_template('staff_trade.html', title='隊伍資訊', user=current_user)
+    if current_user.is_authenticated and current_user.team_id == 5:
+        tradeform = TradeForm()
+
+        if tradeform.validate_on_submit():
+            newEvent = Event(coins=tradeform.coins.data,
+                             sender_id=current_user.id, team_id=tradeform.team_id.data)
+            targetTeam = Team.query.filter_by(
+                id=tradeform.team_id.data).first()
+            targetTeam.team_coins = targetTeam.team_coins + tradeform.coins.data
+            db.session.add(newEvent)
+            db.session.add(targetTeam)
+            db.session.commit()
+            return redirect(url_for('staff_trade'))
+        return render_template('staff_trade.html', title='隊伍資訊', user=current_user, tradeform=tradeform)
+    elif current_user.team_id == 5:
+        return redirect(url_for('staff_team_yellow'))
+    else:
+        return redirect(url_for('team'))
+
+
+@app.route('/staff_set_domain', methods=['GET', 'POST'])
+def staff_set_domain():
+    if current_user.is_authenticated and current_user.team_id == 5:
+
+        domainform = DomainForm()
+
+        if domainform.validate_on_submit():  # TODO: 設定刪除狀態清單
+            targetDomain = Domain.query.filter_by(
+                id=domainform.stageSelect.data).first()
+            targetDomain.time = datetime.utcnow()
+            if domainform.team_id.data == 5:
+                targetDomain.team_id = None
+            else:
+                targetDomain.team_id = domainform.team_id.data
+            db.session.add(targetDomain)
+            db.session.commit()
+            return redirect(url_for('staff_set_domain'))
+
+        return render_template('staff_set_domain.html', title='關卡佔領', user=current_user, domainform=domainform)
+    elif current_user.team_id == 5:
+        return redirect(url_for('staff_team_yellow'))
+    else:
+        return redirect(url_for('team'))
+
 
 # ====== 帳號系統 ====== #
 # 在此login與reset都是使用同一個模板 account.html

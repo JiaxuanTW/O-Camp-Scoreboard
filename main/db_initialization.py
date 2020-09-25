@@ -2,7 +2,13 @@ from main import db
 from main.models import BanCard, Domain, Event, Notice, Team, User
 
 
-user_list = {'A1085512': 5}
+user_list = {   'A1085512': 5,
+                'A1085551': 1,
+                'A1085552': 2,
+                'A1085553': 3,
+                'A1085554': 4,
+                
+                                }
 
 
 def db_init():
@@ -19,9 +25,10 @@ def db_init():
         db.session.commit()
 
     # 建立 BanCard 資料
-    ban_card = BanCard()
-    db.session.add(ban_card)
-    db.session.commit()
+    for i in range(4):
+        ban_card = BanCard()
+        db.session.add(ban_card)
+        db.session.commit()
 
     # 建立 Domain 資料
     for i in range(8):
