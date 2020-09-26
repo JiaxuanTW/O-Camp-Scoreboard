@@ -1,4 +1,8 @@
+{% if user.team_id == 5 %}
+{% extends 'staff_layout.html' %}
+{% else %}
 {% extends 'layout.html' %}
+{% endif %}
 {% block content %}
 <div class="mb-4">
     <div class="card shadow" style="border-radius: 25px;">

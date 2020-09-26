@@ -1,4 +1,8 @@
+{% if user.team_id == 5 %}
+{% extends 'staff_layout.html' %}
+{% else %}
 {% extends 'layout.html' %}
+{% endif %}
 {% block content %}
 <!-- 時間在地化 -->
 {{ moment.include_moment() }}
