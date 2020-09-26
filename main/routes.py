@@ -73,6 +73,8 @@ def datetime_to_timestamp(value):
 @app.route('/')
 def home():
     if current_user.is_authenticated:
+        if current_user.team_id == 5:
+            return redirect(url_for('staff_team', team_id=1))
         return redirect(url_for('team'))
     else:
         return redirect(url_for('login'))
@@ -330,15 +332,15 @@ def scanner():
         return redirect(url_for('login'))
 
 
-@app.route('/staff_team/yellow')
-def staff_team_yellow():
+@app.route('/staff_team/<team_id>')
+def staff_team(team_id):
     if current_user.is_authenticated:
 
         teamList = Team.query.all()
         banCardList = BanCard.query.all()
-
-        return render_template('team.html', title='隊伍資訊', user=current_user,
-                               teamList=teamList, banCardList=banCardList, team_code=0)
+        
+        return render_template('staff_team.html', title='隊伍資訊', user=current_user,
+                               teamList=teamList, banCardList=banCardList, team_code=int(team_id)-1)
     else:
         return redirect(url_for('login'))
 

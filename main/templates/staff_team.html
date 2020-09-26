@@ -1,0 +1,325 @@
+{% extends 'staff_layout.html' %}
+{% block content %}
+
+<!-- 加入樣式表 -->
+<link rel="stylesheet" href="/static/css/team_style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css"
+    integrity="sha512-uCQmAoax6aJTxC03VlH0uCEtE0iLi83TW1Qh6VezEZ5Y17rTrIE+8irz4H4ehM7Fbfbm8rb30OkxVkuwhXxrRg=="
+    crossorigin="anonymous" />
+<!-- JS函式庫 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"
+    integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww=="
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript"> //毫秒級倒數計時器
+    $(document).ready(function () {
+        setInterval(function () {
+            $(".time_wrap").each(function () { //尋訪所有class屬性值為time_wrap元素
+                var Obj = this;
+                var endTime = new Date(parseInt($(Obj).attr('value')) * 1000); //獲取元素value值(時間)
+                var nowTime = new Date(); //獲取當前時間
+                var nMS = endTime.getTime() - nowTime.getTime(); //取得時間差(毫秒)
+                var nD = Math.floor(nMS / (1000 * 60 * 60 * 24));
+                var nH = Math.floor(nMS / (1000 * 60 * 60)) % 24;
+                var nM = Math.floor(nMS / (1000 * 60)) % 60;
+                var nS = Math.floor(nMS / 1000) % 60;
+                var nMS = Math.floor(nMS) % 1000;
+                if (nD >= 0) {
+                    var strS = nS.toString().padStart(2, '0')
+                    var strMS = nMS.toString().padStart(3, '0'); //補齊位數
+                    var str = '<span class="timer">剩下 ' + nM + '分 ' + strS + '秒 ' + strMS + '毫秒';
+                    $(Obj).html(str);
+                }
+                else {
+                    var str = '<span class="timer">時間到 ';
+                    $(Obj).html(str);
+                }
+            });
+        }, 1);
+    }); 
+</script>
+
+<!-- 滑動介面 -->
+<div class="swiper-container">
+    <div class="swiper-wrapper mb-3">
+        <div class="swiper-slide">
+            <div class="mb-4">
+                <div class="card shadow" style="border-radius: 25px;">
+                    <div class="d-flex card-body justify-content-between">
+                        <div class="tile-header">
+                            <h4>小隊資產</h4>
+                            <span>賺錢乃資工基本之道</span>
+                        </div>
+                        <i class="fas fa-donate mt-2" style="font-size: 3rem; color: orange;"></i>
+                    </div>
+                    <div class="card-footer pb-2">
+                        <h5 class="m-2 pb-2" style="text-align: right;">擁有
+                            <span class="pct-counter">{{ teamList[team_code].team_coins }} </span>個古金幣
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="tile-progress tile-pink shadow" style="border-radius: 25px;">
+                <div class="tile-header" style="padding: 20px;">
+                    <h4>小隊進度</h4>
+                    <span>尋找線索，破解謎團</span>
+                </div>
+                <div class="tile-progressbar">
+                    <span data-fill=" {{ teamList[team_code].clues/22*100 }}%"
+                        style="width:  {{ teamList[team_code].clues/22*100 }}%;"></span>
+                </div>
+                <div class="tile-footer">
+                    <h5>已取得
+                        <span class="pct-counter">{{ teamList[team_code].clues }} </span>個線索
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分頁標籤 -->
+    <div class="swiper-pagination"></div>
+</div>
+
+
+<!-- 初始化滑動介面 -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+</script>
+
+
+<div class="mb-4">
+    <div class="card shadow" style="border-radius: 25px;">
+        <div class="d-flex card-body justify-content-between">
+            <div class="tile-header">
+                <h4>功能卡狀態</h4>
+                <span>記得隨時來這裡看看</span>
+            </div>
+        </div>
+        <div class="text-white p-1">
+            {% if teamList[team_code].clueCardStatus == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded" style="background-color:mediumseagreen;">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-up mr-1"></i>線索增益
+                        </h4>
+                        <p class="card-text">下回合多拿一個線索</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if teamList[team_code].clueCardStatus == -1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded" style="background-color:mediumslateblue;">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>線索減益
+                        </h4>
+                        <p class="card-text">下回合少拿一個線索</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if teamList[team_code].selfBanCardStatus == 1 %}
+            <div class="col-auto rounded mb-3">
+                <div class="card">
+                    <div class="card-body pb-0" style="background-color:darkgray;">
+                        <h4 class="card-title">
+                            <i class="fas fa-ban mr-1"></i>我BAN我自己
+                        </h4>
+                        <div class="row justify-content-between pl-2 pb-3">
+                            <p class="card-text">在15分鐘對任何功能卡免疫</p>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="background-color:dimgray;">
+                        <p class="time_wrap card-text text-right" value="{{ teamList[team_code].selfBanCardTime | timestamp }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if teamList[team_code].isolateCardStatus == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">在5分鐘內回到主舞台</p>
+                            <span class="time_wrap card-text"
+                                value="{{ teamList[team_code].isolateCardTime | timestamp }}"></span>
+                        </div>
+                        <p class="card-text">時間戳記：{{ teamList[team_code].isolateCardTime | timestamp }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+            <!-- TODO:倒數計時到期顯示 -->
+            {% if banCardList[team_code].stage1_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage1_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage2_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage2_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage3_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage3_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage4_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage4_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage5_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage5_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage6_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage6_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage7_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage7_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if banCardList[team_code].stage8_status == 1 %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                        <h4 class="card-title">
+                            <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
+                        </h4>
+                        <div class="row justify-content-between pl-2 pr-3">
+                            <p class="card-text">禁止遊玩該關卡15分鐘</p>
+                            <span class="time_wrap card-text"
+                                value="{{ banCardList[team_code].stage8_time | timestamp }}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="mb-4">
+    <div class="card shadow" style="border-radius: 25px;">
+        <div class="d-flex card-body justify-content-between">
+            <div class="tile-header">
+                <h4>交易資訊</h4>
+                <span>交易一定有風險，詳閱公開說明書</span>
+            </div>
+        </div>
+        <div class="card-footer pb-2">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
