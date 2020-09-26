@@ -88,7 +88,7 @@ def team():
         banCardList = BanCard.query.all()
 
         return render_template('team.html', title='隊伍資訊', user=current_user,
-                               teamList=teamList, banCardList=banCardList, team_code=current_user.team_id-1)
+                               teamList=teamList, banCardList=banCardList)
     else:
         return redirect(url_for('login'))
 
@@ -359,10 +359,10 @@ def staff_trade():
             db.session.add(newEvent)
             db.session.add(targetTeam)
             db.session.commit()
-            return redirect(url_for('staff_trade'))
+            return redirect(url_for('staff_team', team_id=1))
         return render_template('staff_trade.html', title='隊伍資訊', user=current_user, tradeform=tradeform)
     elif current_user.team_id == 5:
-        return redirect(url_for('staff_team_yellow'))
+        return redirect(url_for('staff_team', team_id=1))
     else:
         return redirect(url_for('team'))
 
@@ -383,11 +383,11 @@ def staff_set_domain():
                 targetDomain.team_id = domainform.team_id.data
             db.session.add(targetDomain)
             db.session.commit()
-            return redirect(url_for('staff_set_domain'))
+            return redirect(url_for('staff_team', team_id=1))
 
         return render_template('staff_set_domain.html', title='關卡佔領', user=current_user, domainform=domainform)
     elif current_user.team_id == 5:
-        return redirect(url_for('staff_team_yellow'))
+        return redirect(url_for('staff_team', team_id=1))
     else:
         return redirect(url_for('team'))
 

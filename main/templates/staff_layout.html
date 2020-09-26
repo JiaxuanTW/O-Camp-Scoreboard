@@ -130,8 +130,13 @@
         <!-- 主要頁面內容 -->
         <div class="page-content p-4" style="z-index: 100;">
             
-            <button id="sidebarShow" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
-
+            <div class="row mx-0 justify-content-between">
+                <button id="sidebarShow" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+                {% if team_code is defined %}
+                <img src="/static/imgs/avatar-{{ team_code+1 }}.png" style="width: 40px; height: 40px; border-radius: 50%; border: 3px solid rgba(255,255,255,1.00);">
+                {% endif %}
+            </div>
+            
             {% block content %}
             {% endblock %}
 
