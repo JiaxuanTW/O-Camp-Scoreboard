@@ -84,9 +84,9 @@ def home():
 def team():
     if current_user.is_authenticated:
 
-        userList = User.query.all()
-        teamList = Team.query.all()
-        banCardList = BanCard.query.all()
+        userList = User.query.order_by('id').all()
+        teamList = Team.query.order_by('id').all()
+        banCardList = BanCard.query.order_by('id').all()
         eventList = Event.query.filter_by(team_id=current_user.team_id).order_by(Event.time.desc()).all()
 
         return render_template('team.html', title='隊伍資訊', user=current_user, userList=userList,
@@ -103,7 +103,7 @@ def info():
         return redirect(url_for('login'))
 
 
-# TODO: 可能不會使用，需移除
+# TODO: 需移除
 @app.route('/detail')
 def detail():
     if current_user.is_authenticated:
@@ -125,7 +125,7 @@ def notice():
 @app.route('/domain')
 def domain():
     if current_user.is_authenticated:
-        domainList = Domain.query.all()
+        domainList = Domain.query.order_by('id').all()
 
         return render_template('domain.html', title='占領戰', user=current_user, domainList=domainList)
     else:
@@ -150,11 +150,11 @@ def dashboard():
         cardform = CardForm()
         infoform = InfoForm()
 
-        userList = User.query.all()
-        teamList = Team.query.all()
+        userList = User.query.order_by('id').all()
+        teamList = Team.query.order_by('id').all()
         eventList = Event.query.order_by(Event.time.desc()).all()
-        banCardList = BanCard.query.all()
-        domainList = Domain.query.all()
+        banCardList = BanCard.query.order_by('id').all()
+        domainList = Domain.query.order_by('id').all()
         messageList = Notice.query.order_by(Notice.time.desc()).all()
 
         if tradeform.validate_on_submit():
@@ -343,9 +343,9 @@ def scanner():
 def staff_team(team_id):
     if current_user.is_authenticated:
 
-        userList = User.query.all()
-        teamList = Team.query.all()
-        banCardList = BanCard.query.all()
+        userList = User.query.order_by('id').all()
+        teamList = Team.query.order_by('id').all()
+        banCardList = BanCard.query.order_by('id').all()
         eventList = Event.query.filter_by(team_id=team_id).order_by(Event.time.desc()).all()
         
         return render_template('staff_team.html', title='隊伍資訊', user=current_user, userList=userList,
