@@ -4,6 +4,10 @@
 {% extends 'layout.html' %}
 {% endif %}
 {% block content %}
+<!-- 時間在地化 -->
+{{ moment.include_moment() }}
+{{ moment.locale("zh_TW") }}
+
 <div class="mb-4">
     <div class="card shadow" style="border-radius: 25px;">
         <div class="d-flex card-body justify-content-between">
@@ -14,7 +18,16 @@
             <i class="fas fa-comment-dots mt-2" style="font-size: 3rem; color:darkturquoise;"></i>
         </div>
         <div class="card-footer pb-2">
-            
+            <table class="table table-borderless table-sm">
+                <tbody>
+                    {% for message in messageList %}
+                    <tr>
+                        <td><p>{{ message.text }}</p></td>
+                        <td><p class="text-right"><small class="text-align-bottom">{{ moment(message.time).format('H:mm') }}</small></p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

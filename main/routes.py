@@ -84,11 +84,13 @@ def home():
 def team():
     if current_user.is_authenticated:
 
+        userList = User.query.all()
         teamList = Team.query.all()
         banCardList = BanCard.query.all()
+        eventList = Event.query.filter_by(team_id=current_user.team_id).order_by(Event.time.desc()).all()
 
-        return render_template('team.html', title='隊伍資訊', user=current_user,
-                               teamList=teamList, banCardList=banCardList)
+        return render_template('team.html', title='隊伍資訊', user=current_user, userList=userList,
+                               teamList=teamList, banCardList=banCardList, eventList=eventList)
     else:
         return redirect(url_for('login'))
 
@@ -112,8 +114,10 @@ def detail():
 
 @app.route('/notice')
 def notice():
+    messageList = Notice.query.order_by(Notice.time.desc()).all()
+
     if current_user.is_authenticated:
-        return render_template('notice.html', title='通知', user=current_user)
+        return render_template('notice.html', title='通知', user=current_user, messageList=messageList)
     else:
         return redirect(url_for('login'))
 
@@ -148,10 +152,10 @@ def dashboard():
 
         userList = User.query.all()
         teamList = Team.query.all()
-        eventList = Event.query.all()  # TODO: 設定順序
+        eventList = Event.query.order_by(Event.time.desc()).all()
         banCardList = BanCard.query.all()
         domainList = Domain.query.all()
-        noticeList = Notice.query.all()
+        messageList = Notice.query.order_by(Notice.time.desc()).all()
 
         if tradeform.validate_on_submit():
             newEvent = Event(coins=tradeform.coins.data,
@@ -287,7 +291,7 @@ def dashboard():
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-        if domainform.validate_on_submit():  # TODO: 設定刪除狀態清單
+        if domainform.validate_on_submit():
             targetDomain = Domain.query.filter_by(
                 id=domainform.stageSelect.data).first()
             targetDomain.time = datetime.utcnow()
@@ -300,13 +304,16 @@ def dashboard():
             return redirect(url_for('dashboard'))
 
         if infoform.validate_on_submit():  # TODO: 訊息系統資料庫製作
-            print(infoform.text.data)
+            # print(infoform.text.data)
+            newMessage = Notice(time=datetime.utcnow(), text=infoform.text.data)
+            db.session.add(newMessage)
+            db.session.commit()
             return redirect(url_for('dashboard'))
 
         return render_template('dashboard.html', tradeform=tradeform, infoform=infoform,
                                clueform=clueform, domainform=domainform, cardform=cardform,
                                teamList=teamList, domainList=domainList, eventList=eventList,
-                               userList=userList, banCardList=banCardList)
+                               userList=userList, banCardList=banCardList, messageList=messageList)
     else:
         return redirect(url_for('login'))
 
@@ -336,11 +343,13 @@ def scanner():
 def staff_team(team_id):
     if current_user.is_authenticated:
 
+        userList = User.query.all()
         teamList = Team.query.all()
         banCardList = BanCard.query.all()
+        eventList = Event.query.filter_by(team_id=team_id).order_by(Event.time.desc()).all()
         
-        return render_template('staff_team.html', title='隊伍資訊', user=current_user,
-                               teamList=teamList, banCardList=banCardList, team_code=int(team_id)-1)
+        return render_template('staff_team.html', title='隊伍資訊', user=current_user, userList=userList,
+                               teamList=teamList, banCardList=banCardList, team_code=int(team_id)-1, eventList=eventList)
     else:
         return redirect(url_for('login'))
 
@@ -373,7 +382,7 @@ def staff_set_domain():
 
         domainform = DomainForm()
 
-        if domainform.validate_on_submit():  # TODO: 設定刪除狀態清單
+        if domainform.validate_on_submit():
             targetDomain = Domain.query.filter_by(
                 id=domainform.stageSelect.data).first()
             targetDomain.time = datetime.utcnow()

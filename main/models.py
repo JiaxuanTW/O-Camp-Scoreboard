@@ -98,14 +98,14 @@ class Domain(db.Model):
     time = db.Column(db.DateTime)
     team_id = db.Column(db.Integer, default=None)
 
-    # id = 1 : 關卡A
-    # id = 2 : 關卡B
-    # id = 3 : 關卡C
-    # id = 4 : 關卡D
-    # id = 5 : 關卡E
-    # id = 6 : 關卡F
-    # id = 7 : 關卡G
-    # id = 8 : 關卡H
+    # id = 1 : 傳遞聖旨(A)
+    # id = 2 : 全民猜歌大賽(B)
+    # id = 3 : 瑞斯叔叔搬運工(C)
+    # id = 4 : 金盆洗腳(D)
+    # id = 5 : 我最軟Q(E)
+    # id = 6 : 力與美的結合(F)
+    # id = 7 : 喉嚨K歌之王(G)
+    # id = 8 : 赫爾莫斯的傳令(H)
 
     def __repr__(self):
         return f"Domain({self.id}, {self.time}, {self.team_id})"

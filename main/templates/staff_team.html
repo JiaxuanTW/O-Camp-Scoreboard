@@ -39,6 +39,10 @@
     }); 
 </script>
 
+<!-- 時間在地化 -->
+{{ moment.include_moment() }}
+{{ moment.locale("zh_TW") }}
+
 <!-- 滑動介面 -->
 <div class="swiper-container">
     <div class="swiper-wrapper mb-3">
@@ -142,7 +146,8 @@
                         </div>
                     </div>
                     <div class="card-footer" style="background-color:dimgray;">
-                        <p class="time_wrap card-text text-right" value="{{ teamList[team_code].selfBanCardTime | timestamp }}">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ teamList[team_code].selfBanCardTime | timestamp }}">
                         </p>
                     </div>
                 </div>
@@ -152,7 +157,7 @@
             {% if teamList[team_code].isolateCardStatus == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body rounded" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
                         </h4>
@@ -161,14 +166,14 @@
                             <span class="time_wrap card-text"
                                 value="{{ teamList[team_code].isolateCardTime | timestamp }}"></span>
                         </div>
-                        <p class="card-text">時間戳記：{{ teamList[team_code].isolateCardTime | timestamp }}</p>
+                        <!-- <p class="card-text">時間戳記：{{ teamList[team_code].isolateCardTime | timestamp }}</p> -->
                     </div>
                 </div>
             </div>
             {% endif %}
 
 
-            <!-- TODO:倒數計時到期顯示 -->
+            
             {% if banCardList[team_code].stage1_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
@@ -318,7 +323,24 @@
             </div>
         </div>
         <div class="card-footer pb-2">
-            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>金額</th>
+                        <th>發送人</th>
+                    </tr>
+                </thead>
+                <tbody class="justify-content-between">
+                    {% for event in eventList %}
+                    <tr>
+                        <td>{{ moment(event.time).format('H:mm') }}</td>
+                        <td>{{ event.coins }}</td>
+                        <td>{{ userList[event.sender_id-1].nickname }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

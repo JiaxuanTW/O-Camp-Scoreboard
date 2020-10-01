@@ -228,10 +228,10 @@
 												" , style="border-radius: 40px;">
 												<div class="card-body pl-5">
 													{% if domainList[0].team_id == None %}
-													<h5 class="card-title font-weight-bold">你畫我猜</h5>
+													<h5 class="card-title font-weight-bold">傳遞聖旨</h5>
 													<p class="card-text">目前尚無小隊破關</p>
 													{% else %}
-													<h5 class="card-title text-white font-weight-bold">你畫我猜</h5>
+													<h5 class="card-title text-white font-weight-bold">傳遞聖旨</h5>
 													{% if domainList[0].team_id == 1 %}
 													<p class="card-text text-white">阿瑞斯小隊 -
 														{{ moment(domainList[0].time).format('LLL') }}</p>
@@ -343,10 +343,10 @@
 												" , style="border-radius: 40px;">
 												<div class="card-body pl-5">
 													{% if domainList[4].team_id == None %}
-													<h5 class="card-title font-weight-bold">我最搖擺</h5>
+													<h5 class="card-title font-weight-bold">我最軟Q</h5>
 													<p class="card-text">目前尚無小隊破關</p>
 													{% else %}
-													<h5 class="card-title text-white font-weight-bold">我最搖擺</h5>
+													<h5 class="card-title text-white font-weight-bold">我最軟Q</h5>
 													{% if domainList[4].team_id == 1 %}
 													<p class="card-text text-white">阿瑞斯小隊 -
 														{{ moment(domainList[4].time).format('LLL') }}</p>
@@ -371,10 +371,10 @@
 												" , style="border-radius: 40px;">
 												<div class="card-body pl-5">
 													{% if domainList[5].team_id == None %}
-													<h5 class="card-title font-weight-bold">N人N+1腳</h5>
+													<h5 class="card-title font-weight-bold">力與美的結合</h5>
 													<p class="card-text">目前尚無小隊破關</p>
 													{% else %}
-													<h5 class="card-title text-white font-weight-bold">N人N+1腳</h5>
+													<h5 class="card-title text-white font-weight-bold">力與美的結合</h5>
 													{% if domainList[5].team_id == 1 %}
 													<p class="card-text text-white">阿瑞斯小隊 -
 														{{ moment(domainList[5].time).format('LLL') }}</p>
@@ -399,10 +399,10 @@
 												" , style="border-radius: 40px;">
 												<div class="card-body pl-5">
 													{% if domainList[6].team_id == None %}
-													<h5 class="card-title font-weight-bold">含水猜歌</h5>
+													<h5 class="card-title font-weight-bold">喉嚨K歌之王</h5>
 													<p class="card-text">目前尚無小隊破關</p>
 													{% else %}
-													<h5 class="card-title text-white font-weight-bold">含水猜歌</h5>
+													<h5 class="card-title text-white font-weight-bold">喉嚨K歌之王</h5>
 													{% if domainList[6].team_id == 1 %}
 													<p class="card-text text-white">阿瑞斯小隊 -
 														{{ moment(domainList[6].time).format('LLL') }}</p>
@@ -580,7 +580,7 @@
 													{% if teamList[0].isolateCardStatus == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
-															<div class="card-body rounded pb-0"
+															<div class="card-body rounded"
 																style="background-color:mediumslateblue">
 																<h4 class="card-title">
 																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
@@ -589,14 +589,14 @@
 																	<p class="card-text">在5分鐘內回到主舞台</p>
 																	<span class="time_wrap card-text" value="{{ teamList[0].isolateCardTime | timestamp }}"></span>
 																</div>
-																<p class="card-text">時間戳記：{{ teamList[0].isolateCardTime | timestamp }}</p>
+																<!-- <p class="card-text">時間戳記：{{ teamList[0].isolateCardTime | timestamp }}</p> -->
 															</div>
 														</div>
 													</div>
 													{% endif %}
 
 
-													<!-- TODO:倒數計時到期顯示 -->
+													
 													{% if banCardList[0].stage1_status == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
@@ -790,7 +790,7 @@
 													{% if teamList[1].isolateCardStatus == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
-															<div class="card-body rounded pb-0"
+															<div class="card-body rounded"
 																style="background-color:mediumslateblue">
 																<h4 class="card-title">
 																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
@@ -799,14 +799,14 @@
 																	<p class="card-text">在5分鐘內回到主舞台</p>
 																	<span class="time_wrap card-text" value="{{ teamList[1].isolateCardTime | timestamp }}"></span>
 																</div>
-																<p class="card-text">時間戳記：{{ teamList[1].isolateCardTime | timestamp }}</p>
+																<!-- <p class="card-text">時間戳記：{{ teamList[1].isolateCardTime | timestamp }}</p> -->
 															</div>
 														</div>
 													</div>
 													{% endif %}
 
 
-													<!-- TODO:倒數計時到期顯示 -->
+													
 													{% if banCardList[1].stage1_status == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
@@ -1002,7 +1002,7 @@
 													{% if teamList[2].isolateCardStatus == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
-															<div class="card-body rounded pb-0"
+															<div class="card-body rounded"
 																style="background-color:mediumslateblue">
 																<h4 class="card-title">
 																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
@@ -1011,14 +1011,14 @@
 																	<p class="card-text">在5分鐘內回到主舞台</p>
 																	<span class="time_wrap card-text" value="{{ teamList[2].isolateCardTime | timestamp }}"></span>
 																</div>
-																<p class="card-text">時間戳記：{{ teamList[2].isolateCardTime | timestamp }}</p>
+																<!-- <p class="card-text">時間戳記：{{ teamList[2].isolateCardTime | timestamp }}</p> -->
 															</div>
 														</div>
 													</div>
 													{% endif %}
 
 
-													<!-- TODO:倒數計時到期顯示 -->
+													
 													{% if banCardList[2].stage1_status == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
@@ -1215,7 +1215,7 @@
 													{% if teamList[3].isolateCardStatus == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
-															<div class="card-body rounded pb-0"
+															<div class="card-body rounded"
 																style="background-color:mediumslateblue">
 																<h4 class="card-title">
 																	<i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
@@ -1224,14 +1224,14 @@
 																	<p class="card-text">在5分鐘內回到主舞台</p>
 																	<span class="time_wrap card-text" value="{{ teamList[3].isolateCardTime | timestamp }}"></span>
 																</div>
-																<p class="card-text">時間戳記：{{ teamList[3].isolateCardTime | timestamp }}</p>
+																<!-- <p class="card-text">時間戳記：{{ teamList[3].isolateCardTime | timestamp }}</p> -->
 															</div>
 														</div>
 													</div>
 													{% endif %}
 
 
-													<!-- TODO:倒數計時到期顯示 -->
+													
 													{% if banCardList[3].stage1_status == 1 %}
 													<div class="col-auto mb-3">
 														<div class="card">
@@ -1406,8 +1406,17 @@
 									<h5 class="m-0 font-weight-bold text-primary">大會訊息</h5>
 								</div>
 
-								<div class="card-body">
-
+								<div class="card-body" style="max-height: 400px; overflow-y: scroll;">
+									<table class="table table-borderless table-sm">
+										<tbody>
+											{% for message in messageList %}
+											<tr>
+												<td><p>{{ message.text }}</p></td>
+												<td><p class="text-right"><small class="text-align-bottom">{{ moment(message.time).format('H:mm') }}</small></p></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
 								</div>
 
 							</div>

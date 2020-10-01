@@ -60,13 +60,13 @@ class DomainForm(FlaskForm):
     ],validators=[InputRequired(), DataRequired()], coerce=int)
     stageSelect = SelectField('選取關卡', choices=[
         (0, '請選擇'),
-        (1, '你畫我猜'),
+        (1, '傳遞聖旨'),
         (2, '全民猜歌大賽'),
         (3, '瑞斯叔叔搬運工'),
         (4, '金盆洗腳'),
-        (5, '我最搖擺'),
-        (6, 'N人N+1腳'),
-        (7, '含水猜歌'),
+        (5, '我最軟Q'),
+        (6, '力與美的結合'),
+        (7, '喉嚨K歌之王'),
         (8, '赫爾莫斯的傳令'),
     ], coerce=int)
     submit = SubmitField('送出')
