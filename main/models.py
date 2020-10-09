@@ -114,4 +114,4 @@ class Domain(db.Model):
 class Notice(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    text = db.Column(db.String(20), nullable=False, default='NULL')
+    text = db.Column(db.String(200), nullable=False, default='NULL')

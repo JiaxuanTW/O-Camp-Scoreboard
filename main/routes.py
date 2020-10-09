@@ -87,7 +87,8 @@ def team():
         userList = User.query.order_by('id').all()
         teamList = Team.query.order_by('id').all()
         banCardList = BanCard.query.order_by('id').all()
-        eventList = Event.query.filter_by(team_id=current_user.team_id).order_by(Event.time.desc()).all()
+        eventList = Event.query.filter_by(
+            team_id=current_user.team_id).order_by(Event.time.desc()).all()
 
         return render_template('team.html', title='隊伍資訊', user=current_user, userList=userList,
                                teamList=teamList, banCardList=banCardList, eventList=eventList)
@@ -143,6 +144,12 @@ def thanks():
 # ====== 管理員系統 ====== #
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    teamNameList = [ '',
+                     '阿瑞斯小隊',
+                     '雅典娜小隊',
+                     '阿波羅小隊',
+                     '波賽頓小隊', ]
+
     if current_user.is_authenticated:
         tradeform = TradeForm()
         clueform = ClueForm()
@@ -273,6 +280,10 @@ def dashboard():
             if cardform.card.data == 6:
                 targetTeam.isolateCardStatus = 1
                 targetTeam.isolateCardTime = datetime.utcnow() + timedelta(minutes=5)
+                newMessage = Notice(time=datetime.utcnow(),
+                    text=teamNameList[cardform.team_sent.data] + '對' + 
+                    teamNameList[cardform.team_receive.data] + '使用了不是減益是檢疫')
+                db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()
 
@@ -305,7 +316,8 @@ def dashboard():
 
         if infoform.validate_on_submit():  # TODO: 訊息系統資料庫製作
             # print(infoform.text.data)
-            newMessage = Notice(time=datetime.utcnow(), text=infoform.text.data)
+            newMessage = Notice(time=datetime.utcnow(),
+                                text=infoform.text.data)
             db.session.add(newMessage)
             db.session.commit()
             return redirect(url_for('dashboard'))
@@ -346,8 +358,9 @@ def staff_team(team_id):
         userList = User.query.order_by('id').all()
         teamList = Team.query.order_by('id').all()
         banCardList = BanCard.query.order_by('id').all()
-        eventList = Event.query.filter_by(team_id=team_id).order_by(Event.time.desc()).all()
-        
+        eventList = Event.query.filter_by(
+            team_id=team_id).order_by(Event.time.desc()).all()
+
         return render_template('staff_team.html', title='隊伍資訊', user=current_user, userList=userList,
                                teamList=teamList, banCardList=banCardList, team_code=int(team_id)-1, eventList=eventList)
     else:
@@ -368,7 +381,7 @@ def staff_trade():
             db.session.add(newEvent)
             db.session.add(targetTeam)
             db.session.commit()
-            return redirect(url_for('staff_team', team_id=1))
+            return redirect(url_for('staff_team', team_id=tradeform.team_id.data))
         return render_template('staff_trade.html', title='隊伍資訊', user=current_user, tradeform=tradeform)
     elif current_user.team_id == 5:
         return redirect(url_for('staff_team', team_id=1))
@@ -392,7 +405,7 @@ def staff_set_domain():
                 targetDomain.team_id = domainform.team_id.data
             db.session.add(targetDomain)
             db.session.commit()
-            return redirect(url_for('staff_team', team_id=1))
+            return redirect(url_for('domain'))
 
         return render_template('staff_set_domain.html', title='關卡佔領', user=current_user, domainform=domainform)
     elif current_user.team_id == 5:
@@ -454,7 +467,6 @@ def db_create_route():
     db_create()
     return '資料庫建立完成'
 
-
 @app.route('/db/drop')
 def db_drop_route():
     logout_user()
@@ -466,5 +478,3 @@ def db_drop_route():
 def db_init_route():
     db_init()
     return '資料庫資料初始化完成'
-
-# TODO:增加404路由
