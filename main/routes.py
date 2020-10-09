@@ -231,7 +231,7 @@ def dashboard():
                 targetTeam.selfBanCardStatus = 1
                 targetTeam.selfBanCardTime = datetime.utcnow() + timedelta(minutes=15)
                 newMessage = Notice(time=datetime.utcnow(),
-                    text=teamNameList[cardform.team_sent.data] + ' 對自己使用了「我BAN我自己」')
+                    text=teamNameList[cardform.team_receive.data] + ' 對自己使用了「我BAN我自己」')
                 db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()

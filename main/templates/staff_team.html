@@ -157,16 +157,18 @@
             {% if teamList[team_code].isolateCardStatus == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>不是減益是檢疫
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">在5分鐘內回到主舞台</p>
-                            <span class="time_wrap card-text"
-                                value="{{ teamList[team_code].isolateCardTime | timestamp }}"></span>
                         </div>
-                        <!-- <p class="card-text">時間戳記：{{ teamList[team_code].isolateCardTime | timestamp }}</p> -->
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ teamList[team_code].isolateCardTime | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -177,15 +179,18 @@
             {% if banCardList[team_code].stage1_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡A
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage1_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage1_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -194,15 +199,18 @@
             {% if banCardList[team_code].stage2_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡B
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage2_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage2_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -211,15 +219,18 @@
             {% if banCardList[team_code].stage3_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡C
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage3_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage3_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -228,15 +239,18 @@
             {% if banCardList[team_code].stage4_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡D
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage4_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage4_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -245,15 +259,18 @@
             {% if banCardList[team_code].stage5_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡E
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage5_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage5_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -262,15 +279,18 @@
             {% if banCardList[team_code].stage6_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡F
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage6_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage6_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -279,15 +299,18 @@
             {% if banCardList[team_code].stage7_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡G
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage7_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage7_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -296,15 +319,18 @@
             {% if banCardList[team_code].stage8_status == 1 %}
             <div class="col-auto mb-3">
                 <div class="card">
-                    <div class="card-body rounded pb-0" style="background-color:mediumslateblue">
+                    <div class="card-body pb-0" style="background-color:mediumslateblue">
                         <h4 class="card-title">
                             <i class="far fa-thumbs-down mr-1"></i>禁止闖關 - 關卡H
                         </h4>
-                        <div class="row justify-content-between pl-2 pr-3">
+                        <div class="row justify-content-between pl-2 pb-3">
                             <p class="card-text">禁止遊玩該關卡15分鐘</p>
-                            <span class="time_wrap card-text"
-                                value="{{ banCardList[team_code].stage8_time | timestamp }}"></span>
                         </div>
+                    </div>
+                    <div class="card-footer" style="background-color:rebeccapurple;">
+                        <p class="time_wrap card-text text-right"
+                            value="{{ banCardList[team_code].stage8_time | timestamp }}">
+                        </p>
                     </div>
                 </div>
             </div>
