@@ -193,6 +193,10 @@ def dashboard():
                     targetTeam.clueCardContent = '阿波羅小隊'
                 if cardform.team_sent.data == 4:
                     targetTeam.clueCardContent = '波賽頓小隊'
+                newMessage = Notice(time=datetime.utcnow(),
+                    text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                    teamNameList[cardform.team_receive.data] + '使用了「線索增益」')
+                db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()
 
@@ -210,6 +214,10 @@ def dashboard():
                     targetTeam.clueCardContent = '阿波羅小隊'
                 if cardform.team_sent.data == 4:
                     targetTeam.clueCardContent = '波賽頓小隊'
+                newMessage = Notice(time=datetime.utcnow(),
+                    text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                    teamNameList[cardform.team_receive.data] + '使用了「線索減益」')
+                db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()
 
@@ -222,6 +230,9 @@ def dashboard():
             if cardform.card.data == 4:  # TODO: 更新發送小隊資訊
                 targetTeam.selfBanCardStatus = 1
                 targetTeam.selfBanCardTime = datetime.utcnow() + timedelta(minutes=15)
+                newMessage = Notice(time=datetime.utcnow(),
+                    text=teamNameList[cardform.team_sent.data] + ' 對自己使用了「我BAN我自己」')
+                db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()
 
@@ -232,48 +243,80 @@ def dashboard():
                     StageBanTeam.stage1_status = 1
                     StageBanTeam.stage1_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage1_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡A」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 2:
                     StageBanTeam.stage2_status = 1
                     StageBanTeam.stage2_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage2_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡B」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 3:
                     StageBanTeam.stage3_status = 1
                     StageBanTeam.stage3_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage3_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡C」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 4:
                     StageBanTeam.stage4_status = 1
                     StageBanTeam.stage4_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage4_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡D」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 5:
                     StageBanTeam.stage5_status = 1
                     StageBanTeam.stage5_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage5_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡E」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 6:
                     StageBanTeam.stage6_status = 1
                     StageBanTeam.stage6_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage6_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡F」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 7:
                     StageBanTeam.stage7_status = 1
                     StageBanTeam.stage7_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage7_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡G」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
                 if cardform.stageSelect1.data == 8:
                     StageBanTeam.stage8_status = 1
                     StageBanTeam.stage8_time = datetime.utcnow() + timedelta(minutes=15)
                     StageBanTeam.stage8_content = '停用'
+                    newMessage = Notice(time=datetime.utcnow(),
+                        text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                        teamNameList[cardform.team_receive.data] + '使用了「禁止闖關 - 關卡H」')
+                    db.session.add(newMessage)
                     db.session.add(StageBanTeam)
                     db.session.commit()
 
@@ -281,8 +324,8 @@ def dashboard():
                 targetTeam.isolateCardStatus = 1
                 targetTeam.isolateCardTime = datetime.utcnow() + timedelta(minutes=5)
                 newMessage = Notice(time=datetime.utcnow(),
-                    text=teamNameList[cardform.team_sent.data] + '對' + 
-                    teamNameList[cardform.team_receive.data] + '使用了不是減益是檢疫')
+                    text=teamNameList[cardform.team_sent.data] + ' 對 ' + 
+                    teamNameList[cardform.team_receive.data] + '使用了「不是減益是檢疫」')
                 db.session.add(newMessage)
                 db.session.add(targetTeam)
                 db.session.commit()
