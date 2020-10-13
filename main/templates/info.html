@@ -11,11 +11,11 @@
         class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
         <li class="nav-item flex-sm-fill">
             <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"
-                class="nav-link border-0 text-uppercase font-weight-bold active">房間分配</a>
+                class="nav-link border-0 text-uppercase font-weight-bold active">小隊成員</a>
         </li>
         <li class="nav-item flex-sm-fill">
             <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">小隊成員</a>
+                aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">房間分配</a>
         </li>
         <li class="nav-item flex-sm-fill">
             <a id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
@@ -29,12 +29,97 @@
 
     <div id="myTabContent" class="tab-content">
         <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade py-4 show active">
-            <p class="text-muted">沒有資料</p>
-            <p class="text-muted mb-0">沒有資料</p>
+            <div class="row justify-content-between mx-2">
+                <img src="/static/imgs/avatar-1.png" style="width:50px; border-radius:25px;">
+                <img src="/static/imgs/avatar-2.png" style="width:50px; border-radius:25px;">
+                <img src="/static/imgs/avatar-3.png" style="width:50px; border-radius:25px;">
+                <img src="/static/imgs/avatar-4.png" style="width:50px; border-radius:25px;">
+            </div>
+            <div class="mx-2 my-4 text-center">
+                <table class="table table-bordered">
+                    <thead class="thead-light"><th colspan="2">阿瑞斯小隊</th></thead>
+                    <tbody>
+                        <tr>
+                            <td>隊輔</td>
+                            <td>峻翔、宣彤</td>
+                        </tr>
+                        <tr>
+                            <td>相官</td>
+                            <td>哲綸</td>
+                        </tr>
+                        <tr>
+                            <td>成員</td>
+                            <td>信宏、品妤、品豪、洺緯、柏安、郁誼、泓茗</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead class="thead-light"><th colspan="2">雅典娜小隊</th></thead>
+                    <tbody>
+                        <tr>
+                            <td>隊輔</td>
+                            <td>子閎、宣螢</td>
+                        </tr>
+                        <tr>
+                            <td>相官</td>
+                            <td>家安</td>
+                        </tr>
+                        <tr>
+                            <td>成員</td>
+                            <td>欣宜、亦凱、朔潁、士然、俊安、祐誼、翔舒</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead class="thead-light"><th colspan="2">阿波羅小隊</th></thead>
+                    <tbody>
+                        <tr>
+                            <td>隊輔</td>
+                            <td>鈺修、思妤</td>
+                        </tr>
+                        <tr>
+                            <td>相官</td>
+                            <td>嘉軒</td>
+                        </tr>
+                        <tr>
+                            <td>成員</td>
+                            <td>菩方、理凱、珮瑀、哲研、凱翔、權輝、睿穎</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead class="thead-light"><th colspan="2">阿瑞斯小隊</th></thead>
+                    <tbody>
+                        <tr>
+                            <td>隊輔</td>
+                            <td>銘宏、雅鈴</td>
+                        </tr>
+                        <tr>
+                            <td>相官</td>
+                            <td>博喻</td>
+                        </tr>
+                        <tr>
+                            <td>成員</td>
+                            <td>主績、致維、劭哲、佳珉、怡誠、家展</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade py-4">
-            <p class="text-muted">沒有資料</p>
-            <p class="text-muted mb-0">沒有資料</p>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>1</td><td>翰暘、鈺修、瑋杰、峻翔、博喻、家安</td></tr>
+                    <tr><td>2</td><td>鼎元、緯帆、子閎、宜杰、鎧均、瀚揚</td></tr>
+                    <tr><td>3</td><td>泓銘、銘宏、育維、嘉軒、哲綸、庭睿</td></tr>
+                    <tr><td>4</td><td>思妤、宣彤、雅鈴、宣螢</td></tr>
+                    <tr><td>5</td><td>菩方、理凱、哲研、凱翔、權輝、睿穎</td></tr>
+                    <tr><td>6</td><td>信宏、品豪、洺緯、柏安、泓茗</td></tr>
+                    <tr><td>7</td><td>主績、致維、劭哲、怡誠、家展</td></tr>
+                    <tr><td>8</td><td>亦凱、朔潁、士然、俊安、祐誼、翔舒</td></tr>
+                    <tr><td>9</td><td>珮瑀、品妤、郁誼、佳珉、欣宜</td></tr>
+                </tbody>
+            </table>
         </div>
         <div id="contact" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade py-4 text-center">
             <h4>第一天</h4>
@@ -162,11 +247,11 @@
                         <td>早餐</td>
                     </tr>
                     <tr>
-                        <td>09:30~12:00</td>
+                        <td>09:30~12:30</td>
                         <td>玩水</td>
                     </tr>
                     <tr>
-                        <td>12:00~14:00</td>
+                        <td>12:30~14:00</td>
                         <td>午餐&自由活動</td>
                     </tr>
                     <tr>
