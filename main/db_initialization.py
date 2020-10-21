@@ -36,24 +36,24 @@ user_list = {
 }
 
 team_account_list = [
-    'Apollooo',
     'Aresssss',
-    'Poseidon',
     'Athenaaa',
+    'Apollooo',
+    'Poseidon',
 ]
 
 team_password_list = [
-    'APPOLLOteam01Y',
     '02teamARESR',
-    'poseidon03teamB',
     'TEAM04athenaG',
+    'APPOLLOteam01Y',
+    'poseidon03teamB',
 ]
 
 team_nickname_list = [
-    '阿波羅小隊員',
     '阿瑞斯小隊員',
-    '波賽頓小隊員',
     '雅典娜小隊員',
+    '阿波羅小隊員',
+    '波賽頓小隊員',
 ]
 
 
