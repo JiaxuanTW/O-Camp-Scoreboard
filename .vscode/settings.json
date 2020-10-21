@@ -28,4 +28,10 @@
         "system/": true,
         "!/system/*/.ps*": true
     },
+    "cSpell.ignoreWords": [
+        "appoll",
+        "appoll oteam y",
+        "oteam",
+        "y"
+    ],
 }
