@@ -36,10 +36,10 @@ user_list = {
 }
 
 team_account_list = [
-    'Apollo',
-    'Ares',
+    'Apollooo',
+    'Aresssss',
     'Poseidon',
-    'Athena',
+    'Athenaaa',
 ]
 
 team_password_list = [
@@ -74,7 +74,7 @@ def db_init():
     for i in range(4):
         client = User(
             nickname=team_nickname_list[i], account=team_account_list[i],
-            password=team_password_list[i], team_id=i)
+            password=team_password_list[i], team_id=i+1)
         db.session.add(client)
         db.session.commit()
 
