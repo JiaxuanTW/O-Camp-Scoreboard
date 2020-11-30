@@ -1,5 +1,5 @@
 # 高大資工宿營計分系統 O-Camp Scoreboard
-【開發中專案】利用 Flask 組建網頁App，將會利用於2020年9月的高大資工宿營活動。  
+【專案結束】利用 Flask 組建網頁App，將會利用於2020年9月的高大資工宿營活動。  
 This is a python-flask based website for score recording in 2020 NUK CSIE fresher's orientation camp.
 
 ## 特色功能
@@ -20,16 +20,6 @@ This is a python-flask based website for score recording in 2020 NUK CSIE freshe
 4. flask-login
 5. gunicorn
 6. psycopg2  
-
-#### JS 套件引用
-1. Boostrap
-2. InstantScan
-3. Awsome Fonts
-
-#### 其他工具：  
-1. pgAdmin
-2. Git
-3. Heroku CLI
 
 ## 檔案說明
 
